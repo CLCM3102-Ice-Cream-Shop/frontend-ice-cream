@@ -1,0 +1,30 @@
+<p>flavours works!</p>
+<section class="flavourWrap d-flex mx-5">
+    <div class="imgWrapper p-5" *ngFor="let item of flavoursArray">
+        <div class="card d-grid" data-bs-toggle="modal" data-bs-target="#icecreamDetailModal">
+               <img src="assets/images/{{item.displayPic}}" alt="iceCream image" height="130px" width="120px">  
+               <span class="iceName">{{item.fName}}</span>
+          </div>
+    </div>
+
+</section>
+
+<section class="modalSection">
+    <div class="modal fade" id="icecreamDetailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="icecreamDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="icecreamDetailModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
