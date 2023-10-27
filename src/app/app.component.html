@@ -1,16 +1,16 @@
 <div class="homeWrapper">
-  <div class="headerSection mx-5">
+  <div class="headerSection mx-5 py-3">
     <div class="navBarWrap d-flex align-items-center justify-content-between">
       <div class="logoWrap d-flex align-items-center">
-        <img src="" alt="logo">
-        <h1>Ice CREAM sHop</h1>
+        <!-- <img src="" alt="logo"> -->
+        <h1>Ice Cream Shop</h1>
       </div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link " aria-current="page"routerLink="/home">Home</a>
+                <a class="nav-link " aria-current="page" routerLink="/home">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " aria-current="page" href="#">Special Menu</a>
@@ -26,16 +26,35 @@
         </div>
       </nav>
       <div class="btnWrap d-flex align-items-center">
-        <button type="button" class="btn btn-primary">Login</button>
-        <button type="button" class="btn btn-secondary">Register</button>
+        <button type="button" class="btn btn-primary" (click)="router.navigate(['/login'])">Login</button>
+        <button type="button" class="btn btn-secondary" (click)="router.navigate(['/register'])">Register</button>
       </div>
     </div>
 
   </div>
 
-  <div class="footerSection"></div>
-</div>
 
 
-<!-- <app-HomePageComponent></app-HomePageComponent> -->
-<router-outlet></router-outlet>
+  <!-- <app-HomePageComponent></app-HomePageComponent> -->
+  <router-outlet></router-outlet>
+
+  <footer class="bg-pink text-black">
+    <div class="container">
+      <div class="row pt-3">
+        <div class="col-4">
+          <h3 class="fw-normal">Contact us</h3>
+          <address>
+            Ice Cream Shop,<br>
+            154 North west,<br>
+            Calgary – T3P9J6<br>
+            Alberta, Canada.
+          </address>
+        </div>
+        <div class="col-4">
+          <h3 class="fw-normal">Reach us</h3>
+          <p>Call:<a href="tel:+11234567890"> +1 1234567890</a></p>
+          <p>Email:<a href="mailto:mail@icecreamshop.ca"> group4@icecreamshop.ca</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
