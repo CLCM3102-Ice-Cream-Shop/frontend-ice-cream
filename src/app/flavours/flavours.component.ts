@@ -41,11 +41,28 @@ public flavoursArray =[
   },
   {
     id:"05",
-    fName:"Vanila",
+    fName:"Butter Pecan",
     desc:"Lorem ipsum.....",
     additionalRequest: "",
     size:"",
-    displayPic:"vanila.png"
+    displayPic:"Butter Pecan.jpeg"
+  },
+  {
+    id:"06",
+    fName:"Neapolitan",
+    desc:"Lorem ipsum.....",
+    additionalRequest: "",
+    size:"",
+    displayPic:"neapolitan.jpg"
+  },
+
+  {
+    id:"07",
+    fName:"Butterscotch",
+    desc:"Lorem ipsum.....",
+    additionalRequest: "",
+    size:"",
+    displayPic:"butterscotch.jpg"
   },
 ]
 }
