@@ -64,5 +64,14 @@ public flavoursArray =[
     size:"",
     displayPic:"butterscotch.jpg"
   },
+
+  {
+    id:"08",
+    fName:"Raspberry Ripple",
+    desc:"Lorem ipsum.....",
+    additionalRequest: "",
+    size:"",
+    displayPic:"Raspberry.jpg"
+  },
 ]
 }
