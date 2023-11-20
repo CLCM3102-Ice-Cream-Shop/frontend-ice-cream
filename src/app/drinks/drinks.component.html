@@ -1,0 +1,11 @@
+<h3 class="text-center">Drinks</h3>
+<div class="container">
+  <div class="row mx-0">
+    <div class="col-3 mb-3" *ngFor="let item of drinksArray">
+      <div class="card text-center" data-bs-toggle="modal" data-bs-target="#icecreamDetailModal">
+        <img class="img" src="assets/images/{{item.displayPic}}" alt="iceCream image">
+        <span class="iceName p-3">{{item.fName}}</span>
+      </div>
+    </div>
+  </div>
+</div>

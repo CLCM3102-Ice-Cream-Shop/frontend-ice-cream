@@ -1,24 +1,38 @@
-.btn-primary{
+footer,
+nav {
+    background-color: #fbb2c5 !important;
+    box-shadow: 5px 3px 20px #6d0f0f;
+}
+
+nav {
+    margin-bottom: 15px;
+}
+
+.logo {
+    font-family: cursive;
+    color: #6d0f0f;
+    text-shadow: 2px 2px #d54c8b;
+}
+
+.btn {
     margin-right: 20px;
 }
-footer{
+
+footer {
     position: relative;
     margin-bottom: 0 !important;
-    background-color: black;
+    margin-top: 15px;
 }
-/* address , .fw-normal{
-    color: antiquewhite;
-} */
-footer , .navbar{
- background-color: #FFDFDF !important;
-}
-.nav-link{
-    font-family: cursive;
+
+
+.nav-link {
     font-weight: bolder;
     font-size: 24px;
-    color: black;
+    color: #6d0f0f;
 }
-.nav-link:active , .nav-link:hover{
-    color: #2d67ff;
-    text-decoration: underline;
+
+.nav-link:active,
+.nav-link.active,
+.nav-link:hover {
+    color: #d54c8b;
 }

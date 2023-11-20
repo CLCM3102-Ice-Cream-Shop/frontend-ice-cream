@@ -1,0 +1,22 @@
+.iceName{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: inherit;
+    color: darkblue;
+    background-color: #63cfd9;
+    cursor: pointer;
+}
+
+.img {
+  height: 250px;
+  width: 299px;
+  padding: 0.5rem;
+  background-color: #63cfd9;
+  cursor: pointer;
+}
+
+.card:hover .img,
+.card:hover .iceName {
+  background-color: #ffd8e0;
+}

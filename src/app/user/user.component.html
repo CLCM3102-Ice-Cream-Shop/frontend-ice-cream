@@ -1,0 +1,31 @@
+<div class="row mx-0 p-3">
+    <div class="col-3">
+        <ul class="nav flex-column nav-pills" id="myTab" role="tablist" aria-orientation="vertical">
+            <li class="nav-link mb-3 p-3 shadow active" id="profile-tab" role="tab" data-bs-toggle="tab" data-bs-target="#profile" aria-controls="profile" aria-selected="true">
+                <i class="fa fa-user me-3"></i>
+                <span class="font-weight-bold small text-uppercase">Profile</span>
+            </li>
+            <li class="nav-link mb-3 p-3 shadow" id="cart-tab" role="tab" data-bs-toggle="tab" data-bs-target="#cart" aria-controls="cart" aria-selected="false">
+                <i class="fa fa-shopping-cart me-3"></i>
+                <span class="font-weight-bold small text-uppercase">Cart</span>
+            </li>
+            <li class="nav-link mb-3 p-3 shadow" id="order-tab" role="tab" data-bs-toggle="tab" data-bs-target="#order" aria-controls="order" aria-selected="false">
+                <i class="fa fa-truck-fast me-3"></i>
+                <span class="font-weight-bold small text-uppercase">Order</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-9">
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade shadow rounded bg-white p-3 show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <app-profile></app-profile>
+            </div>
+            <div class="tab-pane fade shadow rounded bg-white p-3" id="cart" role="tabpanel" aria-labelledby="cart-tab">
+                <app-cart></app-cart>
+            </div>
+            <div class="tab-pane fade shadow rounded bg-white p-3" id="order" role="tabpanel" aria-labelledby="order-tab">
+                <app-order></app-order>
+            </div>
+        </div>
+    </div>
+</div>

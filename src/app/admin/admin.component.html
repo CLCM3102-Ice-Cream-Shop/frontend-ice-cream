@@ -1,0 +1,14 @@
+<div class="d-flex align-items-center justify-content-between">
+
+<form (ngSubmit)="onSubmit()" class="col-4">
+  <h1>Admin Login Form</h1>
+  <label for="username" class="form-label">Username:</label>
+  <input type="text" id="username"  class="form-control" name="username" required [(ngModel)]="username"><br>
+
+  <label for="password" class="form-label">Password:</label>
+  <input type="password" id="password"  class="form-control" name="password" required [(ngModel)]="password"><br>
+
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+</div>
+<div *ngIf="loginMessage" id="loginMessage">{{ loginMessage }}</div>

@@ -1,0 +1,41 @@
+<form #registrationForm="ngForm" (ngSubmit)="register()">
+    <div class="row">
+        <div class="col-6">
+            <div class="mb-3">
+                <label for="username" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="username" name="username" [(ngModel)]="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password"
+                    required>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label for="username" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="username" name="username" [(ngModel)]="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Phone Number</label>
+                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="confirmpassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmpassword" name="confirmpassword"
+                    [(ngModel)]="confirmPassword" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            Already have a account? <a role="button" class="text-primary" (click)="login()">Login here.</a>
+        </div>
+        <div class="col-12 mb-3">
+            <button type="button" class="btn btn-outline-secondary btn-sm me-3" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary btn-sm">Register</button>
+        </div>
+    </div>
+</form>
