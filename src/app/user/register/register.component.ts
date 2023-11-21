@@ -7,15 +7,17 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class RegisterComponent {
 
-  username: string = '';
+  firstName: string = '';
   email: string = '';
   password: string = '';
+  lastName: string = '';
+  phoneNumber: string = '';
   confirmPassword: string = '';
   showRegistration = false;
   @Output() switchToLogin: EventEmitter<any> = new EventEmitter();
 
   register() {
-    // Perform registration using the username, email, and password
+    // Perform registration using the firstName, lastName, email, phonenumber and password
   }
 
   login() {
