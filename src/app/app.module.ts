@@ -15,6 +15,7 @@ import { CommonserviceService } from './commonservice.service';
 import { ProfileComponent } from './user/profile/profile.component';
 import { UserComponent } from './user/user.component';
 import { OrderComponent } from './user/order/order.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { OrderComponent } from './user/order/order.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [CommonserviceService],
   bootstrap: [AppComponent]
