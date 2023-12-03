@@ -1,0 +1,34 @@
+img{
+    width: 620px;
+}
+.card-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card {
+    position: relative;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 94%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card:hover .overlay {
+    opacity: 1;
+  }
+  .desc{
+    font-size: 18px;
+    font-family: math;
+    color: lavenderblush;
+  }

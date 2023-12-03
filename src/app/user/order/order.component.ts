@@ -15,7 +15,7 @@ export class OrderComponent {
       orderId: "123-1234567-12345",
       orderDetails: [
         {
-          flavour: "Vanilla",
+          item: "Vanilla",
           additionalRequest: "",
           toppings: 3,
           type: "Cup",
@@ -24,7 +24,7 @@ export class OrderComponent {
           count: 3
         },
         {
-          flavour: "Strawberry",
+          item: "Strawberry",
           additionalRequest: "",
           toppings: 5,
           type: "Cup",
@@ -33,7 +33,7 @@ export class OrderComponent {
           count: 2
         },
         {
-          flavour: "Pista",
+          item: "Pista",
           additionalRequest: "",
           toppings: 3,
           type: "Cup",
@@ -50,7 +50,7 @@ export class OrderComponent {
       orderId: "123-1234567-12345",
       orderDetails: [
         {
-          flavour: "Vanilla",
+          item: "Vanilla",
           additionalRequest: "",
           toppings: 3,
           type: "Cup",
@@ -59,7 +59,7 @@ export class OrderComponent {
           count: 3
         },
         {
-          flavour: "Strawberry",
+          item: "Strawberry",
           additionalRequest: "",
           toppings: 5,
           type: "Cup",
@@ -68,7 +68,7 @@ export class OrderComponent {
           count: 2
         },
         {
-          flavour: "Pista",
+          item: "Pista",
           additionalRequest: "",
           toppings: 3,
           type: "Cup",

@@ -2,10 +2,86 @@
 <div class="container">
   <div class="row mx-0">
     <div class="col-3 mb-3" *ngFor="let item of drinksArray">
-      <div class="card text-center" data-bs-toggle="modal" data-bs-target="#icecreamDetailModal">
+      <div class="card text-center" data-bs-toggle="modal" data-bs-target="#icecreamDetailModal"
+      (click)="viewProduct(item.fName)">
         <img class="img" src="assets/images/{{item.displayPic}}" alt="iceCream image">
         <span class="iceName p-3">{{item.fName}}</span>
       </div>
     </div>
   </div>
 </div>
+<section class="modalSection">
+  <div class="modal fade" id="icecreamDetailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="icecreamDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="icecreamDetailModalLabel">Ordering - {{selectedFlavor?.fName}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Display the price -->
+          <p *ngIf="selectedFlavor">Price: ${{priceVal | number:'1.2-2'}}</p>
+
+          <!-- Size -->
+          <div class="d-grid mb-3">
+            <span class="fw-bold">Size</span>
+            <div class="d-flex align-items-center">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sizeRadio" id="smallRadio" [(ngModel)]="selectedSize"
+                  value="Small">
+                <label class="form-check-label" for="smallRadio">Small</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sizeRadio" id="mediumRadio"
+                  [(ngModel)]="selectedSize" value="Medium">
+                <label class="form-check-label" for="mediumRadio">Medium</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sizeRadio" id="largeRadio" [(ngModel)]="selectedSize"
+                  value="Large">
+                <label class="form-check-label" for="largeRadio">Large</label>
+              </div>
+            </div>
+          </div>
+          <!-- Toppings -->
+          <div class="d-grid mb-3">
+            <span class="fw-bold">Toppings</span>
+            <div class="d-flex">
+              <!-- Replace these checkboxes with your actual toppings -->
+              <div class="w-50">
+                <div class="form-check" *ngFor="let topping of toppings">
+                  <input class="form-check-input" type="checkbox" [id]="topping.id" [(ngModel)]="topping.isSelected"
+                    [name]="topping.name" (change)="updateSelectedToppings(topping.id , topping.name)">
+                  <label class="form-check-label" for="topping.name">{{ topping.name }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Additional Request -->
+          <div class="d-grid mb-3">
+            <span class="fw-bold">Additional Request</span>
+            <div class="form-floating">
+              <textarea class="form-control" placeholder="Leave a comment here" id="additionalRequest"
+                [(ngModel)]="additionalRequest"></textarea>
+              <label for="additionalRequest">Comments</label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" #closeFlavModal class="btn btn-outline-secondary btn-sm m-0 me-3" data-bs-dismiss="modal">Cancel</button>
+          <div class="input-group m-0 w-25">
+            <button class="btn btn-outline-secondary btn-sm" type="button" (click)="decrement()" id="button-addon1">
+              <em class="fa fa-minus"></em>
+            </button>
+            <input class="form-control form-control-sm border-secondary text-center" type="text" [(ngModel)]="counterValue" readonly>
+            <button class="btn btn-outline-secondary btn-sm" type="button" id="button-addon1" (click)="increment()">
+              <em class="fa fa-plus"></em>
+            </button>
+          </div>
+          <button type="button" class="btn btn-outline-primary btn-sm m-0 ms-3" (click)="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

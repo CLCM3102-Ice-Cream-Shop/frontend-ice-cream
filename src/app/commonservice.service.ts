@@ -4,19 +4,19 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CommonserviceService {
+
   cartItems: any[] = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
   addToCart(item: any) {
     console.log('Before adding to cart:', this.cartItems);
     const existingItem = this.cartItems.find(cartItem => {
-      if (cartItem.flavour === item.flavour && cartItem.type === item.type && cartItem.size === item.size) {
-        const toppingCount = cartItem.toppings.filter((obj: any) => item.toppings.some((itemObj: any) => obj.id === itemObj.id));
-        return toppingCount.length === item.toppings.length ? true : false;
+      if (cartItem.item === item.item && cartItem.type === item.type && cartItem.size === item.size) {
+        const toppingCount = cartItem.toppings?.filter((obj: any) => item.toppings.some((itemObj: any) => obj.id === itemObj.id));
+        return toppingCount?.length === item.toppings?.length ? true : false;
       } else {
         return false;
       }
     });
-
     if (existingItem) {
       existingItem.count += item.count || 1;
     } else {
@@ -41,5 +41,5 @@ export class CommonserviceService {
     this.cartItems = [];
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
-  constructor() { }
+
 }

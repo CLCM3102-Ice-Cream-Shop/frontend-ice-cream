@@ -1,0 +1,33 @@
+.order-sheet {
+    position: relative;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 0px !important;
+    background-color: lemonchiffon;
+    box-shadow: 0px 0px 7px;
+    transform: rotate(3.5deg);
+  }
+  
+  .order-pin {
+    position: absolute;
+    top: 0px;
+    color: cornflowerblue;
+    font-size: 1.4rem;
+    left: 140px;
+}
+.row{
+    min-height: 600px;
+}
+.fa-solid{
+  font-weight: 900;
+  height: fit-content !important;
+  padding-right: 20px;
+}
+.fa-solid:hover{
+  cursor: pointer;
+}
+.actionWrap{
+  position: relative;
+  right: -10px;
+  height: fit-content;
+}

@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-3" *ngFor="let item of cartItems; let i = index">
+      <div class=" mb-4">
+        <div class="card-body order-sheet">
+          <i class="fa-solid fa-thumbtack fa-bounce fa-sm order-pin"></i>
+          <div class="d-flex">
+<div>
+          <h5 class="card-title">Order Details</h5>
+          <div >
+            <span *ngIf="item.orderid != null"> <strong>Order ID:</strong> {{ item.orderid }}<br> </span>
+            <span *ngIf="item.flavour  != null "> <strong>Flavour:</strong>  {{ item.flavour }}<br></span> 
+            <span *ngIf="item.type  != null "> <strong>Type:</strong>   {{ item.type }}<br> </span>
+            <span *ngIf="item.size  != null ">   <strong>Size:</strong>{{ item.size }} <br></span> 
+            <span *ngIf="item.productType != 'specialMenu'" >  <strong>Toppings:</strong>
+            <ul>
+              <li *ngFor="let topping of item.toppings">{{ topping.name }}</li>
+            </ul>
+            </span>
+            <span *ngIf="item.customerComments != null">  <strong>Customer Comments:</strong> {{ item.customerComments }}</span> <br>
+            <strong>Count:</strong> {{ item.count }} <br>
+            <strong>Price:</strong> ${{ item.price}}
+        </div>
+</div>
+<div class="d-flex actionWrap"> <i class="fa-solid fa-check" style="color: green;"></i>
+  <i class="fa-solid fa-xmark" style="color: red;"></i>
+</div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
