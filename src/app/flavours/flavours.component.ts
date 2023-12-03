@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { CartComponent } from '../user/cart/cart.component';
 import { CommonserviceService } from '../commonservice.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-flavours',
@@ -24,91 +25,113 @@ export class FlavoursComponent {
     { id: 7, name: 'Fruits', isSelected: false },
     { id: 8, name: 'M & M', isSelected: false }
   ];
-  public flavoursArray = [
-    {
-      id: "01",
-      fName: "Vanilla",
-      desc: "Lorem ipsum.....",
-      additionalRequest: "",
-      size: "",
-      displayPic: "vanilla.jpg",
-      price: 3.99
-    },
-    {
-      id: "02",
-      fName: "Strawberry",
-      desc: "Lorem ipsum.....",
-      additionalRequest: "",
-      size: "",
-      displayPic: "strawberry.jpg",
-      price: 4.48
-    },
-    {
-      id: "03",
-      fName: "Chocolate",
-      desc: "Lorem ipsum.....",
-      additionalRequest: "",
-      size: "",
-      displayPic: "chocolate.jpg",
-      price: 5.99
-    },
-    {
-      id: "04",
-      fName: "Pista",
-      desc: "Lorem ipsum.....",
-      additionalRequest: "",
-      size: "",
-      displayPic: "pista.jpg",
-      price: 4.99
-    },
-    {
-      id: "05",
-      fName: "Butter Pecan",
-      desc: "Lorem ipsum.....",
-      additionalRequest: "",
-      size: "",
-      displayPic: "Butter Pecan.jpeg",
-      price: 6.59
-    },
-    {
-      id: "06",
-      fName: "Neapolitan",
-      desc: "Lorem ipsum.....",
-      additionalRequest: "",
-      size: "",
-      displayPic: "neapolitan.jpg",
-      price: 3.99
-    },
 
-    {
-      id: "07",
-      fName: "Butterscotch",
-      desc: "Lorem ipsum.....",
-      additionalRequest: "",
-      size: "",
-      displayPic: "butterscotch.jpg",
-      price: 6.99
-    },
+  public flavoursArray: any[] = [];
 
-    {
-      id: "08",
-      fName: "Raspberry Ripple",
-      desc: "Lorem ipsum.....",
-      additionalRequest: "",
-      size: "",
-      displayPic: "Raspberry.jpg",
-      price: 7.99
-    },
+  constructor(
+    private commonservice: CommonserviceService,
+    private httpClient: HttpClient
+  ) {
+    this.selectedToppings = []; // Initialize selectedToppings as an empty array
+  }
 
-  ];
+  ngOnInit() {
+    // Make GET request to fetch flavors from the API
+    this.httpClient.get<any>('http://localhost:8081/menu/flavors')
+      .subscribe(
+        (response) => {
+          // Extract 'data' array from the response and assign it to flavoursArray
+          if (response && response.data) {
+            this.flavoursArray = response.data;
+          }
+        },
+        (error) => {
+          console.error('Error fetching flavors:', error);
+        }
+      );
+  }
+  // public flavoursArray = [
+  //   {
+  //     id: "01",
+  //     fName: "Vanilla",
+  //     desc: "Lorem ipsum.....",
+  //     additionalRequest: "",
+  //     size: "",
+  //     displayPic: "vanilla.jpg",
+  //     price: 3.99
+  //   },
+  //   {
+  //     id: "02",
+  //     fName: "Strawberry",
+  //     desc: "Lorem ipsum.....",
+  //     additionalRequest: "",
+  //     size: "",
+  //     displayPic: "strawberry.jpg",
+  //     price: 4.48
+  //   },
+  //   {
+  //     id: "03",
+  //     fName: "Chocolate",
+  //     desc: "Lorem ipsum.....",
+  //     additionalRequest: "",
+  //     size: "",
+  //     displayPic: "chocolate.jpg",
+  //     price: 5.99
+  //   },
+  //   {
+  //     id: "04",
+  //     fName: "Pista",
+  //     desc: "Lorem ipsum.....",
+  //     additionalRequest: "",
+  //     size: "",
+  //     displayPic: "pista.jpg",
+  //     price: 4.99
+  //   },
+  //   {
+  //     id: "05",
+  //     fName: "Butter Pecan",
+  //     desc: "Lorem ipsum.....",
+  //     additionalRequest: "",
+  //     size: "",
+  //     displayPic: "Butter Pecan.jpeg",
+  //     price: 6.59
+  //   },
+  //   {
+  //     id: "06",
+  //     fName: "Neapolitan",
+  //     desc: "Lorem ipsum.....",
+  //     additionalRequest: "",
+  //     size: "",
+  //     displayPic: "neapolitan.jpg",
+  //     price: 3.99
+  //   },
+
+  //   {
+  //     id: "07",
+  //     fName: "Butterscotch",
+  //     desc: "Lorem ipsum.....",
+  //     additionalRequest: "",
+  //     size: "",
+  //     displayPic: "butterscotch.jpg",
+  //     price: 6.99
+  //   },
+
+  //   {
+  //     id: "08",
+  //     fName: "Raspberry Ripple",
+  //     desc: "Lorem ipsum.....",
+  //     additionalRequest: "",
+  //     size: "",
+  //     displayPic: "Raspberry.jpg",
+  //     price: 7.99
+  //   },
+  // ];
+
   public counterValue: number = 1;
   public priceVal: number = 0;
   private originalPrice: number = 0;
   @ViewChild('closeFlavModal') closeFlavModal: any;
 
-  constructor(private commonservice: CommonserviceService) {
-    this.selectedToppings = []; // Initialize selectedToppings as an empty array
-  }
 
   public increment() {
     this.counterValue++;
@@ -139,7 +162,7 @@ export class FlavoursComponent {
       customerComments: this.additionalRequest,
       count: this.counterValue,
       price: this.priceVal,
-      displayPic: this.selectedFlavor.displayPic 
+      displayPic: this.selectedFlavor.displayPic
     };
     this.commonservice.addToCart(iceCreamDetail);
     this.clearForm();
@@ -160,7 +183,7 @@ export class FlavoursComponent {
     this.selectedToppings = [];
     this.additionalRequest = '';
     this.counterValue = 1;
-    this.toppings.forEach((topping: any) => topping.isSelected = false );
+    this.toppings.forEach((topping: any) => topping.isSelected = false);
   }
 
 }
