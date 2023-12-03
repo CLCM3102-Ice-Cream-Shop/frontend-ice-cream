@@ -47,85 +47,85 @@ export class FlavoursComponent {
         },
         (error) => {
           console.error('Error fetching flavors:', error);
+          this.flavoursArray = [
+            {
+              id: "01",
+              fName: "Vanilla",
+              desc: "Lorem ipsum.....",
+              additionalRequest: "",
+              size: "",
+              displayPic: "vanilla.jpg",
+              price: 3.99
+            },
+            {
+              id: "02",
+              fName: "Strawberry",
+              desc: "Lorem ipsum.....",
+              additionalRequest: "",
+              size: "",
+              displayPic: "strawberry.jpg",
+              price: 4.48
+            },
+            {
+              id: "03",
+              fName: "Chocolate",
+              desc: "Lorem ipsum.....",
+              additionalRequest: "",
+              size: "",
+              displayPic: "chocolate.jpg",
+              price: 5.99
+            },
+            {
+              id: "04",
+              fName: "Pista",
+              desc: "Lorem ipsum.....",
+              additionalRequest: "",
+              size: "",
+              displayPic: "pista.jpg",
+              price: 4.99
+            },
+            {
+              id: "05",
+              fName: "Butter Pecan",
+              desc: "Lorem ipsum.....",
+              additionalRequest: "",
+              size: "",
+              displayPic: "Butter Pecan.jpeg",
+              price: 6.59
+            },
+            {
+              id: "06",
+              fName: "Neapolitan",
+              desc: "Lorem ipsum.....",
+              additionalRequest: "",
+              size: "",
+              displayPic: "neapolitan.jpg",
+              price: 3.99
+            },
+        
+            {
+              id: "07",
+              fName: "Butterscotch",
+              desc: "Lorem ipsum.....",
+              additionalRequest: "",
+              size: "",
+              displayPic: "butterscotch.jpg",
+              price: 6.99
+            },
+        
+            {
+              id: "08",
+              fName: "Raspberry Ripple",
+              desc: "Lorem ipsum.....",
+              additionalRequest: "",
+              size: "",
+              displayPic: "Raspberry.jpg",
+              price: 7.99
+            },
+          ];
         }
       );
   }
-  // public flavoursArray = [
-  //   {
-  //     id: "01",
-  //     fName: "Vanilla",
-  //     desc: "Lorem ipsum.....",
-  //     additionalRequest: "",
-  //     size: "",
-  //     displayPic: "vanilla.jpg",
-  //     price: 3.99
-  //   },
-  //   {
-  //     id: "02",
-  //     fName: "Strawberry",
-  //     desc: "Lorem ipsum.....",
-  //     additionalRequest: "",
-  //     size: "",
-  //     displayPic: "strawberry.jpg",
-  //     price: 4.48
-  //   },
-  //   {
-  //     id: "03",
-  //     fName: "Chocolate",
-  //     desc: "Lorem ipsum.....",
-  //     additionalRequest: "",
-  //     size: "",
-  //     displayPic: "chocolate.jpg",
-  //     price: 5.99
-  //   },
-  //   {
-  //     id: "04",
-  //     fName: "Pista",
-  //     desc: "Lorem ipsum.....",
-  //     additionalRequest: "",
-  //     size: "",
-  //     displayPic: "pista.jpg",
-  //     price: 4.99
-  //   },
-  //   {
-  //     id: "05",
-  //     fName: "Butter Pecan",
-  //     desc: "Lorem ipsum.....",
-  //     additionalRequest: "",
-  //     size: "",
-  //     displayPic: "Butter Pecan.jpeg",
-  //     price: 6.59
-  //   },
-  //   {
-  //     id: "06",
-  //     fName: "Neapolitan",
-  //     desc: "Lorem ipsum.....",
-  //     additionalRequest: "",
-  //     size: "",
-  //     displayPic: "neapolitan.jpg",
-  //     price: 3.99
-  //   },
-
-  //   {
-  //     id: "07",
-  //     fName: "Butterscotch",
-  //     desc: "Lorem ipsum.....",
-  //     additionalRequest: "",
-  //     size: "",
-  //     displayPic: "butterscotch.jpg",
-  //     price: 6.99
-  //   },
-
-  //   {
-  //     id: "08",
-  //     fName: "Raspberry Ripple",
-  //     desc: "Lorem ipsum.....",
-  //     additionalRequest: "",
-  //     size: "",
-  //     displayPic: "Raspberry.jpg",
-  //     price: 7.99
-  //   },
-  // ];
 
   public counterValue: number = 1;
   public priceVal: number = 0;
