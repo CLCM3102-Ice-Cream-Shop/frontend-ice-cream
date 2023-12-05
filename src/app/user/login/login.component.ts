@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
@@ -6,14 +7,31 @@ import {Component, EventEmitter, Output} from '@angular/core';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-    public email:string = '';
-    public password:string = '';
+    public email: string = '';
+    public password: string = '';
     public isLogin: boolean = true;
     @Output() enableLogin: EventEmitter<any> = new EventEmitter();
     @Output() signin: EventEmitter<any> = new EventEmitter();
 
+    constructor(private httpClient: HttpClient) { }
     login() {
-        // Perform login using the username and password
+        const userData = {
+            email: this.email,
+            password: this.password,
+        };
+
+        const apiUrl = 'http://localhost:5000/login'; // Replace with your server URL
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+        this.httpClient.post<any>(apiUrl, userData, { headers })
+            .subscribe(
+                (response) => {
+                    alert('Login successful!');
+                },
+                (error) => {
+                    console.error('Login error', error);
+                }
+            );
         this.signin.emit(true);;
     }
 
