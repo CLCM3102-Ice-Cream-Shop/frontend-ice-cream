@@ -30,7 +30,7 @@ export class RegisterComponent {
       confirm_password: this.confirmPassword
     };
 
-    const apiUrl = 'http://localhost:5000/user'; // Replace with your server URL
+    const apiUrl = 'http://localhost:5000/customer'; // Replace with your server URL
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.httpClient.post<any>(apiUrl, userData, { headers })
