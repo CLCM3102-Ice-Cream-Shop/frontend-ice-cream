@@ -13,7 +13,7 @@ export class DrinksComponent {
       fName:"Chocolate Milkshake",
       desc:"Lorem ipsum.....",
       additionalRequest: "",
-      size:"", price: 2.99,
+      size:"", price: 5.99,
       displayPic:"chocolatems.jpg"
     },
     {
@@ -21,7 +21,7 @@ export class DrinksComponent {
       fName:"Strawberry Milkshake ",
       desc:"Lorem ipsum.....",
       additionalRequest: "",
-      size:"", price: 2.99,
+      size:"", price: 3.99,
       displayPic:"strawberryms.jpg"
     },
     {
@@ -29,7 +29,7 @@ export class DrinksComponent {
       fName:"Vanilla Milkshake",
       desc:"Lorem ipsum.....",
       additionalRequest: "",
-      size:"", price: 2.99,
+      size:"", price: 4.99,
       displayPic:"Vanillams.jpg"
     },
     {
@@ -45,7 +45,7 @@ export class DrinksComponent {
       fName:"Red Wine Ice Cream Float",
       desc:"Lorem ipsum.....",
       additionalRequest: "",
-      size:"", price: 2.99,
+      size:"", price: 4.99,
       displayPic:"redwineicecreamfloat.jpg"
     },
     {
@@ -53,7 +53,7 @@ export class DrinksComponent {
       fName:"Pineapple Slushie",
       desc:"Lorem ipsum.....",
       additionalRequest: "",
-      size:"", price: 2.99,
+      size:"", price: 1.99,
       displayPic:"pineappleslushie.jpg"
     },
   
@@ -62,7 +62,7 @@ export class DrinksComponent {
       fName:"Root Beer Float",
       desc:"Lorem ipsum.....",
       additionalRequest: "",
-      size:"", price: 2.99,
+      size:"", price: 6.99,
       displayPic:"RootBeerFloat.jpg"
     },
   
