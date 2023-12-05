@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,5 @@ export class CommonserviceService {
     this.cartItems = [];
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
-
+ 
 }

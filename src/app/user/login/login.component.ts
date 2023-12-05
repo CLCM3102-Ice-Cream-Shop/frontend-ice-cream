@@ -32,7 +32,8 @@ export class LoginComponent {
                     console.error('Login error', error);
                 }
             );
-        this.signin.emit(true);;
+        this.isLogin = true;
+        this.signin.emit(true);
     }
 
     signUp() {

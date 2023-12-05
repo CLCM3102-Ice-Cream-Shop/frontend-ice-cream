@@ -16,7 +16,8 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { UserComponent } from './user/user.component';
 import { OrderComponent } from './user/order/order.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import * as $ from "jquery";
+import * as bootstrap from "bootstrap";
 @NgModule({
   declarations: [
     AppComponent,

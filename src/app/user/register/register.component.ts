@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { CommonserviceService } from 'src/app/commonservice.service';
 
 @Component({
   selector: 'app-register',
@@ -29,6 +30,7 @@ export class RegisterComponent {
       password: this.password,
       confirm_password: this.confirmPassword
     };
+    // this.dataService.closeTheModal(true);
 
     const apiUrl = 'http://localhost:5000/customer'; 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
