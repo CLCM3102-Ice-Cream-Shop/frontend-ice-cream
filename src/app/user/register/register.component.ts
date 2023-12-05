@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Router } from '@angular/router';
+import { CommonserviceService } from 'src/app/commonservice.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ export class RegisterComponent {
   showRegistration = false;
   @Output() switchToLogin: EventEmitter<any> = new EventEmitter();
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private router: Router, private httpClient: HttpClient) {}
 
   register() {
     const userData = {
@@ -29,19 +30,22 @@ export class RegisterComponent {
       password: this.password,
       confirm_password: this.confirmPassword
     };
+    // this.dataService.closeTheModal(true);
 
-    const apiUrl = 'http://localhost:5000/user'; // Replace with your server URL
+    const apiUrl = 'http://localhost:5000/customer'; 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.httpClient.post<any>(apiUrl, userData, { headers })
       .subscribe(
         (response) => {
           console.log('Registration successful:', response);
-          // Handle success, such as displaying a success message or navigating to another page
+          alert('Register successful!');
+          localStorage.setItem('email', response.email);
+          localStorage.setItem('name', response.name);
+          this.router.navigate(['/home']);
         },
         (error) => {
           console.error('Error during registration:', error);
-          // Handle error, such as displaying an error message
         }
       );
   }
