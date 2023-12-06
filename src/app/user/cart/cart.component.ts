@@ -40,11 +40,13 @@ export class CartComponent {
 
   public increment(item: any) {
     item.count++;
+    this.commonservice.updateCart(item);
   }
 
   public decrement(item: any) {
     if (item.count > 1) {
       item.count--;
+      this.commonservice.updateCart(item);
     }
   }
 }

@@ -42,7 +42,8 @@ export class RegisterComponent {
           alert('Register successful!');
           localStorage.setItem('email', response.email);
           localStorage.setItem('name', response.name);
-          this.router.navigate(['/home']);
+          this.reset();
+          this.switchToLogin.emit(true);
         },
         (error) => {
           console.error('Error during registration:', error);
@@ -52,6 +53,15 @@ export class RegisterComponent {
 
   login() {
     this.switchToLogin.emit(true);
+  }
+
+  reset() {
+    this.firstName = '';
+    this.lastName = '';
+    this.email = '';
+    this.phoneNumber = '';
+    this.password = '';
+    this.confirmPassword = '';
   }
 }
 

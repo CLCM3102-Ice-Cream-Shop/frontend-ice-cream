@@ -5,25 +5,29 @@
       <div class="card-container">
         <div class="card text-center" data-bs-toggle="modal" data-bs-target="#icecreamDetailModal">
           <img src="assets/images/{{item.displayPic}}" alt="iceCream image" height="450px" width="700px" class="p-2">
-          
+
           <div class="overlay">
             <div class="desc p-3">{{item.desc}}</div>
-            <div class="modal-footer justify-content-center mt-5">
+            <div class="modal-footer justify-content-center mt-5" *ngIf="!isItemAdded">
               <div class="w-100 mb-3">$ {{item.price}}</div>
-              <button type="button" #closeFlavModal class="btn btn-secondary btn-sm m-0 me-3" data-bs-dismiss="modal">Cancel</button>
               <div class="input-group m-0 w-25">
                 <button class="btn btn-outline-secondary btn-sm" type="button" (click)="decrement()" id="button-addon1">
                   <em class="fa fa-minus"></em>
                 </button>
-                <input class="form-control form-control-sm border-secondary text-center" type="text" [(ngModel)]="counterValue" readonly>
+                <input class="form-control form-control-sm border-secondary text-center" type="text"
+                  [(ngModel)]="counterValue" readonly>
                 <button class="btn btn-outline-secondary btn-sm" type="button" id="button-addon1" (click)="increment()">
                   <em class="fa fa-plus"></em>
                 </button>
               </div>
-              <button type="button" class="btn btn-primary btn-sm m-0 ms-3" (click)="addToCart(item.fName, item.price)">Add to Cart</button>
+              <button type="button" class="btn btn-primary btn-sm m-0 ms-3"
+                (click)="addToCart(item.fName, item.price)">Add to Cart</button>
             </div>
+            <div class="modal-footer justify-content-center mt-5" *ngIf="isItemAdded">
+              Item added successfully
+              </div>
           </div>
-        <span class="iceName">{{item.fName}}</span>
+          <span class="iceName">{{item.fName}}</span>
 
         </div>
       </div>

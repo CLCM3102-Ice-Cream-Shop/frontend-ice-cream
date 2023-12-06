@@ -48,6 +48,7 @@ export class SpecialMenuComponent {
   ]
   public counterValue: number = 1;
   public priceVal: number = 0;
+  public isItemAdded: boolean = false;
 
   constructor(
     private commonservice: CommonserviceService
@@ -77,5 +78,10 @@ export class SpecialMenuComponent {
       price: price
     }
     this.commonservice.addToCart(splMenuDetail);
+    this.isItemAdded = true;
+    this.counterValue = 1;
+    setTimeout(() => {
+      this.isItemAdded = false;
+    }, 2000);
   }
 }
