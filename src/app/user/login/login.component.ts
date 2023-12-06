@@ -10,11 +10,13 @@ export class LoginComponent {
     public email: string = '';
     public password: string = '';
     public isLogin: boolean = true;
+    public userName:string = '';
     @Output() enableLogin: EventEmitter<any> = new EventEmitter();
     @Output() signin: EventEmitter<any> = new EventEmitter();
 
     constructor(private httpClient: HttpClient) { }
     login() {
+        this.isLogin= true;
         const userData = {
             email: this.email,
             password: this.password,
@@ -26,14 +28,21 @@ export class LoginComponent {
         this.httpClient.post<any>(apiUrl, userData, { headers })
             .subscribe(
                 (response) => {
-                    alert('Login successful!');
+                    console.log(response,"username")
+                    alert('Login successful!' );
+                    this.isLogin = true;
+                    this.userName = response.first_name;
+
+                    if(this.isLogin){
+                    this.signin.emit(true );
+
+                    }
                 },
                 (error) => {
                     console.error('Login error', error);
+                    alert("Please register to login")
                 }
             );
-        this.isLogin = true;
-        this.signin.emit(true);
     }
 
     signUp() {

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonserviceService } from '../commonservice.service';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-special-menu',
@@ -7,7 +8,7 @@ import { CommonserviceService } from '../commonservice.service';
   styleUrls: ['./special-menu.component.css']
 })
 export class SpecialMenuComponent {
-
+  // @ViewChild('addedToCartModal') addedToCartModal: any;
   public specialArray = [
     {
       id: "01",
@@ -77,6 +78,7 @@ export class SpecialMenuComponent {
       count: this.counterValue,
       price: price
     }
+
     this.commonservice.addToCart(splMenuDetail);
     this.isItemAdded = true;
     this.counterValue = 1;
@@ -84,4 +86,5 @@ export class SpecialMenuComponent {
       this.isItemAdded = false;
     }, 2000);
   }
+  
 }

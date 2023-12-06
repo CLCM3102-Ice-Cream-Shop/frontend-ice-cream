@@ -10,6 +10,7 @@ import * as $ from "jquery";
 export class AppComponent {
 
   isLogin: boolean = false;
+  public userName :string ='';
   @ViewChild('userModal') userModal: any;
  
   @ViewChild('testModal') testModal: any;
@@ -24,8 +25,11 @@ ngOnInit(){}
 
   }
 
-  signin(event: any) {
+  signin(event: any ) {
     this.showLoginName = true;
+    if(this.showLoginName){
+      // this.userName =name;
+    }
     this.router.navigate(['./user']);
   }
 }

@@ -44,6 +44,7 @@ export class RegisterComponent {
           localStorage.setItem('name', response.name);
           this.reset();
           this.switchToLogin.emit(true);
+          this.router.navigate(['/home']);
         },
         (error) => {
           console.error('Error during registration:', error);
