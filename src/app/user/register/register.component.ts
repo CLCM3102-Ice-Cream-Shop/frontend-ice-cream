@@ -48,6 +48,7 @@ export class RegisterComponent {
         },
         (error) => {
           console.error('Error during registration:', error);
+          alert('Error: register is not complete.');
         }
       );
   }
