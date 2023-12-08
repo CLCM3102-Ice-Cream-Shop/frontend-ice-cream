@@ -25,7 +25,7 @@ export class LoginComponent {
                     if(this.isLogin){
                     this.signin.emit(true );
                     }
-        const apiUrl = 'http://backend-customer-serivce:5000'; // Replace with your server URL
+        const apiUrl = 'http://backend-customer-serivce:5000/login'; // Replace with your server URL
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
         this.httpClient.post<any>(apiUrl, userData, { headers })
