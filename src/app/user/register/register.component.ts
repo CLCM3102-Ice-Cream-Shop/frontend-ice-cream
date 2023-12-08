@@ -33,8 +33,8 @@ export class RegisterComponent {
     this.dataService.setCustomerRegisteredDetails(userData);
     // this.dataService.closeTheModal(true);
 
-    // const apiUrl = 'http://localhost:5000/customer'; 
-    // const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const apiUrl = 'http://localhost:5000/customer'; 
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.httpClient.post<any>(apiUrl, userData, { headers })
       .subscribe(
