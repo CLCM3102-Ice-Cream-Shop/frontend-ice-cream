@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { CommonserviceService } from 'src/app/commonservice.service';
 
 @Component({
     selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
     @Output() enableLogin: EventEmitter<any> = new EventEmitter();
     @Output() signin: EventEmitter<any> = new EventEmitter();
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private commonSvc: CommonserviceService) { }
     login() {
         this.isLogin= true;
         const userData = {
@@ -25,16 +26,18 @@ export class LoginComponent {
                     if(this.isLogin){
                     this.signin.emit(true );
                     }
-        const apiUrl = 'http://backend-customer-service:5000/login'; // Replace with your server URL
+        const apiUrl = 'http://localhost:5000/login'; // Replace with your server URL
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
         this.httpClient.post<any>(apiUrl, userData, { headers })
             .subscribe(
                 (response) => {
                     console.log(response,"username")
-                    alert('Login successful!' );
+                    alert('Login successful!');
                     this.isLogin = true;
                     this.userName = response.first_name;
+
+                    this.commonSvc.setCustomerID(response.customer_id);
 
                     if(this.isLogin){
                     this.signin.emit(true );
