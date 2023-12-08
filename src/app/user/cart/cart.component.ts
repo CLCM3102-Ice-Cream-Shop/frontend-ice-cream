@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonserviceService } from '../../commonservice.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart',
@@ -10,14 +11,30 @@ export class CartComponent {
 
   public cartItems: any[] = [];
 
-  constructor(private commonservice: CommonserviceService) { }
+  constructor(private commonservice: CommonserviceService, private commonSvc: CommonserviceService, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.getCartItems();
   }
 
   public getCartItems(): void {
-    this.cartItems = this.commonservice.getCartItems();
+
+    const storedCustomerID = this.commonSvc.getStoredCustomerID();
+
+    const apiUrl = `http://localhost:8080/cart/customer/${storedCustomerID}`;
+
+    this.httpClient.get<any>(apiUrl).subscribe(
+      (response) => {
+        this.cartItems = response.data.map((item: any) => ({
+          item: item.menu_name, 
+          toppings: [], 
+          count: item.quantity,
+          price: item.price
+        }));
+      },
+      (error) => {
+      }
+    );
   }
 
   public removeItem(index: number): void {
