@@ -48,7 +48,7 @@
           <tr *ngIf="cartItems.length > 0">
             <td colspan="6" class="text-end"></td>
             <td class="text-center">
-              <button class="btn btn-outline-success btn-sm me-3">Order Now</button>
+              <button class="btn btn-outline-success btn-sm me-3" (click)="orderNow()">Order Now</button>
             </td>
           </tr>
         </tbody>

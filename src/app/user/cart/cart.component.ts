@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonserviceService } from '../../commonservice.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart',
@@ -10,8 +10,11 @@ import { HttpClient } from '@angular/common/http';
 export class CartComponent {
 
   public cartItems: any[] = [];
+  public cartId: string = '';
+  public discountCode: string = '';
 
-  constructor(private commonservice: CommonserviceService, private commonSvc: CommonserviceService, private httpClient: HttpClient) { }
+  constructor(private commonservice: CommonserviceService, private commonSvc: CommonserviceService,
+     private httpClient: HttpClient, private location: Location) { }
 
   ngOnInit(): void {
     this.getCartItems();
@@ -25,13 +28,15 @@ export class CartComponent {
 
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {
-        this.cartItems = response.data.map((item: any) => ({
-          row : item.no,
-          item: item.menu_name, 
-          toppings: [], 
+        const cartDetail = response.data.cart_detail;
+        this.cartId =response.data.cart_id;
+        this.cartItems = cartDetail.map((item: any) => ({
+          row: item.no,
+          item: item.menu_name,
+          toppings: [],
           count: item.quantity,
           price: item.price,
-          cart_id: item.cart_id 
+          no: item.no
         }));
       },
       (error) => {
@@ -41,12 +46,11 @@ export class CartComponent {
 
   public removeItem(itemRow: any): void {
     const index = this.cartItems.findIndex(item => item.row === itemRow);
-  
+
     if (index !== -1) {
-      const cartId = this.cartItems[index].cart_id;
-  
+      const cartId = this.cartId;
       const apiUrl = `http://localhost:8080/cart/cancel/${cartId}/${this.cartItems[index].row}`;
-  
+
       this.httpClient.delete(apiUrl).subscribe(
         (response) => {
           // On successful removal from the server, update the local cartItems array
@@ -59,6 +63,26 @@ export class CartComponent {
     } else {
       console.error('Item with row ' + itemRow + ' not found.');
     }
+  }
+
+  public orderNow(): void {
+    const request = {
+      cart_id: this.cartId,
+      discount_code: this.discountCode,
+    };
+
+    const apiUrl = `http://localhost:8080/order`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    this.httpClient.post<any>(apiUrl, request, { headers }).subscribe(
+      (response) => {
+        console.log('Create new order sucess', response);
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Error create new order:', error);
+      }
+    );
   }
 
   public clearCart(): void {
