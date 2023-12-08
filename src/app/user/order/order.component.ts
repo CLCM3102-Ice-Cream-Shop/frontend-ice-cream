@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CommonserviceService } from 'src/app/commonservice.service';
+
 
 @Component({
   selector: 'app-order',
@@ -6,77 +9,37 @@ import { Component } from '@angular/core';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent {
+  public orderItems: any[] = [];
 
-  public orderItems = [
-    {
-      orderDate: "11/19/2023",
-      totalPrice: 36.90,
-      orderStatus: "Delivered",
-      orderId: "123-1234567-12345",
-      orderDetails: [
-        {
-          item: "Vanilla",
-          additionalRequest: "",
-          toppings: 3,
-          type: "Cup",
-          size: "Small",
-          price: 3.99,
-          count: 3
-        },
-        {
-          item: "Strawberry",
-          additionalRequest: "",
-          toppings: 5,
-          type: "Cup",
-          size: "Small",
-          price: 4.99,
-          count: 2
-        },
-        {
-          item: "Pista",
-          additionalRequest: "",
-          toppings: 3,
-          type: "Cup",
-          size: "Small",
-          price: 2.99,
-          count: 5
-        }
-      ]
-    },
-    {
-      orderDate: "11/19/2023",
-      totalPrice: 36.90,
-      orderStatus: "Delivered",
-      orderId: "123-1234567-12345",
-      orderDetails: [
-        {
-          item: "Vanilla",
-          additionalRequest: "",
-          toppings: 3,
-          type: "Cup",
-          size: "Small",
-          price: 3.99,
-          count: 3
-        },
-        {
-          item: "Strawberry",
-          additionalRequest: "",
-          toppings: 5,
-          type: "Cup",
-          size: "Small",
-          price: 4.99,
-          count: 2
-        },
-        {
-          item: "Pista",
-          additionalRequest: "",
-          toppings: 3,
-          type: "Cup",
-          size: "Small",
-          price: 2.99,
-          count: 5
-        }
-      ]
-    }
-  ];
+  constructor(private httpClient: HttpClient, private commonSvc: CommonserviceService) { }
+  ngOnInit(): void {
+
+    const storedCustomerID = this.commonSvc.getStoredCustomerID();
+    const apiUrl = `http://localhost:8080/order/customer/${storedCustomerID}`;
+
+    this.httpClient.get<any>(apiUrl).subscribe(
+      (response) => {
+        console.log('Create new order sucess', response);
+        this.orderItems = response.data.map((order: any) => {
+          return {
+            orderDate: new Date(order.date_time).toLocaleDateString(), 
+            totalPrice: parseFloat(order.total_amount),
+            orderStatus: order.status,
+            orderId: order.order_id,
+            orderDetails: order.cart_detail.map((detail: any) => ({
+              no: detail.no,
+              item: detail.menu_name,
+              additionalRequest: detail.additional_request, 
+              price: parseFloat(detail.price),
+              count: detail.quantity
+            }))
+          };
+        });
+      },
+      (error) => {
+        console.error(`Error can't get order detail:`, error);
+      }
+    );
+  }
+
 }
