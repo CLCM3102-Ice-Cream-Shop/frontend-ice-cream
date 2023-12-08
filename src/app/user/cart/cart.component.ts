@@ -13,8 +13,7 @@ export class CartComponent {
   public cartId: string = '';
   public discountCode: string = '';
 
-  constructor(private commonservice: CommonserviceService, private commonSvc: CommonserviceService,
-     private httpClient: HttpClient) { }
+  constructor(private commonservice: CommonserviceService, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.getCartItems();
@@ -22,14 +21,14 @@ export class CartComponent {
 
   public getCartItems(): void {
 
-    const storedCustomerID = this.commonSvc.getStoredCustomerID();
+    const storedCustomerID = this.commonservice.getStoredCustomerID();
 
     const apiUrl = `http://localhost:8080/cart/customer/${storedCustomerID}`;
 
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {
         const cartDetail = response.data.cart_detail;
-        this.cartId =response.data.cart_id;
+        this.cartId = response.data.cart_id;
         this.cartItems = cartDetail.map((item: any) => ({
           row: item.no,
           item: item.menu_name,
