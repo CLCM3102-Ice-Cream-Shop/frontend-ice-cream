@@ -14,7 +14,7 @@ export class CartComponent {
   public discountCode: string = '';
 
   constructor(private commonservice: CommonserviceService, private commonSvc: CommonserviceService,
-     private httpClient: HttpClient, private location: Location) { }
+     private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.getCartItems();
@@ -77,7 +77,6 @@ export class CartComponent {
     this.httpClient.post<any>(apiUrl, request, { headers }).subscribe(
       (response) => {
         console.log('Create new order sucess', response);
-        window.location.reload();
       },
       (error) => {
         console.error('Error create new order:', error);
