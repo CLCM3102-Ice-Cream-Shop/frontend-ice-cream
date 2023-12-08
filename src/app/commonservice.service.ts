@@ -74,4 +74,23 @@ export class CommonserviceService {
     const storedData = localStorage.getItem('customerDetails');
     return storedData ? JSON.parse(storedData) : [];
   }
+
+  public customerID: string | null = null;
+
+  setCustomerID(customerID: string) {
+    this.customerID = customerID;
+    this.saveCustomerIDToLocalStorage();
+    console.log(this.customerID);
+  }
+
+  public saveCustomerIDToLocalStorage() {
+    if (this.customerID !== null) {
+      localStorage.setItem('customerID', this.customerID);
+    }
+  }
+
+  public getStoredCustomerID(): string | null {
+    const storedData = localStorage.getItem('customerID');
+    return storedData !== null ? storedData : null;
+  }
 }
