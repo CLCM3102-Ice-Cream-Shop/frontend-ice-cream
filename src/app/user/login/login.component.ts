@@ -25,27 +25,27 @@ export class LoginComponent {
                     if(this.isLogin){
                     this.signin.emit(true );
                     }
-        // const apiUrl = 'http://localhost:5000/login'; // Replace with your server URL
-        // const headers = new HttpHeaders().set('Content-Type', 'application/json');
+        const apiUrl = 'http://backend-customer-serivce:5000'; // Replace with your server URL
+        const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        // this.httpClient.post<any>(apiUrl, userData, { headers })
-        //     .subscribe(
-        //         (response) => {
-        //             console.log(response,"username")
-        //             alert('Login successful!' );
-        //             this.isLogin = true;
-        //             this.userName = response.first_name;
+        this.httpClient.post<any>(apiUrl, userData, { headers })
+            .subscribe(
+                (response) => {
+                    console.log(response,"username")
+                    alert('Login successful!' );
+                    this.isLogin = true;
+                    this.userName = response.first_name;
 
-        //             if(this.isLogin){
-        //             this.signin.emit(true );
+                    if(this.isLogin){
+                    this.signin.emit(true );
 
-        //             }
-        //         },
-        //         (error) => {
-        //             console.error('Login error', error);
-        //             alert("Please register to login")
-        //         }
-        //     );
+                    }
+                },
+                (error) => {
+                    console.error('Login error', error);
+                    alert("Please register to login")
+                }
+            );
     }
 
     signUp() {
