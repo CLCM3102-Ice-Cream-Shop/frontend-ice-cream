@@ -35,7 +35,7 @@ export class CommonserviceService {
       } else {
         return false;
       }
-    }); 
+    });
     if (existingItem) {
       existingItem.count = item.count;
     }
@@ -56,22 +56,22 @@ export class CommonserviceService {
     this.cartItems = [];
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
-  public registeredCustomerDetails:any =[];
-  setCustomerRegisteredDetails(obj:any){
+  public registeredCustomerDetails: any = [];
+  setCustomerRegisteredDetails(obj: any) {
     this.registeredCustomerDetails.push(obj);
     this.saveCustomerDetailsToLocalStorage();
     console.log(this.registeredCustomerDetails);
-    }
-    public saveCustomerDetailsToLocalStorage() {
-      const jsonString = JSON.stringify(this.registeredCustomerDetails);
-      localStorage.setItem('customerDetails', jsonString);
-    }
-    public sentCustomerRegisteredDetails(){
-      console.log(this.registeredCustomerDetails);
-      return this.registeredCustomerDetails;
-    }
-    public getStoredCustomerDetails(): any[] {
-      const storedData = localStorage.getItem('customerDetails');
-      return storedData ? JSON.parse(storedData) : [];
-    }
+  }
+  public saveCustomerDetailsToLocalStorage() {
+    const jsonString = JSON.stringify(this.registeredCustomerDetails);
+    localStorage.setItem('customerDetails', jsonString);
+  }
+  public sentCustomerRegisteredDetails() {
+    console.log(this.registeredCustomerDetails);
+    return this.registeredCustomerDetails;
+  }
+  public getStoredCustomerDetails(): any[] {
+    const storedData = localStorage.getItem('customerDetails');
+    return storedData ? JSON.parse(storedData) : [];
+  }
 }
