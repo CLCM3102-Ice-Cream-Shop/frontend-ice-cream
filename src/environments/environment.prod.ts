@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiCustomerUrl: 'http://backend-customer-serivce:5000',
-    apiPaymentUrl: ''
+    apiCustomerUrl: 'http://54.234.168.231:5000',
+    apiPaymentUrl: 'http://54.234.168.231:3101'
   };
