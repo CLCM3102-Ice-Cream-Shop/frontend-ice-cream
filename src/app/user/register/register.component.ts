@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonserviceService } from '../../commonservice.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +34,7 @@ export class RegisterComponent {
     this.dataService.setCustomerRegisteredDetails(userData);
     // this.dataService.closeTheModal(true);
 
-    const apiUrl = 'http://localhost:5000/customer'; 
+    const apiUrl = `${environment.apiCustomerUrl}/customer`; 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.httpClient.post<any>(apiUrl, userData, { headers })

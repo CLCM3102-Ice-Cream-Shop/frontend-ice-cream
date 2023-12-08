@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonserviceService } from '../../commonservice.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -23,7 +24,7 @@ export class CartComponent {
 
     const storedCustomerID = this.commonservice.getStoredCustomerID();
 
-    const apiUrl = `http://localhost:8080/cart/customer/${storedCustomerID}`;
+    const apiUrl = `${environment.apiPaymentUrl}/cart/customer/${storedCustomerID}`;
 
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {
@@ -48,7 +49,7 @@ export class CartComponent {
 
     if (index !== -1) {
       const cartId = this.cartId;
-      const apiUrl = `http://localhost:8080/cart/cancel/${cartId}/${this.cartItems[index].row}`;
+      const apiUrl = `${environment.apiPaymentUrl}/cart/cancel/${cartId}/${this.cartItems[index].row}`;
 
       this.httpClient.delete(apiUrl).subscribe(
         (response) => {
@@ -70,7 +71,7 @@ export class CartComponent {
       discount_code: this.discountCode,
     };
 
-    const apiUrl = `http://localhost:8080/order`;
+    const apiUrl = `${environment.apiPaymentUrl}/order`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.httpClient.post<any>(apiUrl, request, { headers }).subscribe(

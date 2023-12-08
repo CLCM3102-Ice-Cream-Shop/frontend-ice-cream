@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonserviceService } from 'src/app/commonservice.service';
-
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-order',
@@ -15,7 +15,7 @@ export class OrderComponent {
   ngOnInit(): void {
 
     const storedCustomerID = this.commonSvc.getStoredCustomerID();
-    const apiUrl = `http://localhost:8080/order/customer/${storedCustomerID}`;
+    const apiUrl = `${environment.apiPaymentUrl}/order/customer/${storedCustomerID}`;
 
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {

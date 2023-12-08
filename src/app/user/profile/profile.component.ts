@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../customer.service';
 import { CommonserviceService } from 'src/app/commonservice.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -46,7 +47,7 @@ export class ProfileComponent implements OnInit {
     };
     const storedCustomerID  = this.dataService.getStoredCustomerID();
 
-    const apiUrl = `http://localhost:5000/customer/${storedCustomerID}`; 
+    const apiUrl = `${environment.apiCustomerUrl}/customer/${storedCustomerID}`; 
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.httpClient.put<any>(apiUrl, userData, { headers })
