@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../customer.service';
 import { CommonserviceService } from 'src/app/commonservice.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,7 @@ export class ProfileComponent implements OnInit {
   };
   
 
-  constructor(private customerService: CustomerService, private dataService:CommonserviceService) {}
+  constructor(private customerService: CustomerService, private dataService:CommonserviceService, private httpClient: HttpClient) {}
  public isEditing:boolean = false;
   ngOnInit() {
     const details = this.dataService.getStoredCustomerDetails() || {};
