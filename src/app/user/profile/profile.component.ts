@@ -36,6 +36,30 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
+    const userData = {
+      first_name:  this.customerData.first_name,
+      last_name: this.customerData.last_name,
+      email: this.customerData.email,
+      phone: this.customerData.phone,
+      password: this.customerData.password,
+      confirm_password: this.customerData.confirm_password
+    };
+    const storedCustomerID  = this.dataService.getStoredCustomerID();
+
+    const apiUrl = `http://localhost:5000/customer/${storedCustomerID}`; 
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    this.httpClient.put<any>(apiUrl, userData, { headers })
+      .subscribe(
+        (response) => {
+          console.log('Update successful:', response);
+          alert('Update successful!');
+        },
+        (error) => {
+          console.error('Error during update customer information:', error);
+          alert('Error: update is not complete.');
+        }
+      );
 
     // this.customerService.setCustomerData(this.customerData);
   }
