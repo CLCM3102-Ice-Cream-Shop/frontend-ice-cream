@@ -40,6 +40,10 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 
 # Copy the rest of the source files into the image.
 COPY . .
+
+# Clear the Angular cache (add this step to clear cache before the build).
+RUN rm -rf ./.angular/cache
+
 # Run the build script.
 RUN npm run build
 
