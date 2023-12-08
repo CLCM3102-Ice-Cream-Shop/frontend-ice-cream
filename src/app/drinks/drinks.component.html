@@ -79,9 +79,21 @@
               <em class="fa fa-plus"></em>
             </button>
           </div>
-          <button type="button" class="btn btn-outline-primary btn-sm m-0 ms-3" (click)="addToCart()">Add to Cart</button>
+          <button type="button" class="btn btn-outline-primary btn-sm m-0 ms-3" data-bs-toggle="modal" data-bs-target="#addedToCartModal" (click)="addToCart()">Add to Cart</button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<div class="modal fade" id="addedToCartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="addedToCartModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-body d-flex justify-content-between align-items-center">
+      <div>Your item is added to the cart !!!</div>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+</div>

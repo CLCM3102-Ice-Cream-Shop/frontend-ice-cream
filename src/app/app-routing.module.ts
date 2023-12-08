@@ -11,6 +11,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { CartComponent } from './user/cart/cart.component';
 import { UserComponent } from './user/user.component';
+import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 
 const routes: Routes = [
   { path: 'flavours', component: FlavoursComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'drinks', component: DrinksComponent },
+  { path: 'adminOrderDetails', component:  AdminOrderDetailsComponent},
   { path: 'specialMenu', component: SpecialMenuComponent },
   { path: 'cart', component: CartComponent },
   { path: 'user', component: UserComponent },

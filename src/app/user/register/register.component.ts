@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { CommonserviceService } from 'src/app/commonservice.service';
+import { CommonserviceService } from '../../commonservice.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +19,7 @@ export class RegisterComponent {
   showRegistration = false;
   @Output() switchToLogin: EventEmitter<any> = new EventEmitter();
 
-  constructor(private router: Router, private httpClient: HttpClient) {}
+  constructor(private router: Router, private httpClient: HttpClient, private dataService:CommonserviceService) {}
 
   register() {
     const userData = {
@@ -30,10 +30,11 @@ export class RegisterComponent {
       password: this.password,
       confirm_password: this.confirmPassword
     };
+    this.dataService.setCustomerRegisteredDetails(userData);
     // this.dataService.closeTheModal(true);
 
-    const apiUrl = 'http://localhost:5000/customer'; 
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    // const apiUrl = 'http://localhost:5000/customer'; 
+    // const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.httpClient.post<any>(apiUrl, userData, { headers })
       .subscribe(

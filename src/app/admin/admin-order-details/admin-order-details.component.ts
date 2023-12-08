@@ -12,6 +12,7 @@ export class AdminOrderDetailsComponent {
   constructor(private commonservice: CommonserviceService) { }
 
   ngOnInit(): void {
+    
     this.cartItems = this.commonservice.getCartItems();
     this.cartItems = this.cartItems.map((item, index) => {
       const productType = item.productType || 'default'; 

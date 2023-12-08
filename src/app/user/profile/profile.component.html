@@ -1,37 +1,38 @@
 <div class="row">
-  <div class="col-12">
-    <h2>Welcome, {{ customerData.name }}!</h2>
+  <div class="col-12 d-flex align-items-center justify-content-between">
+    <h2>Welcome, {{ customerData.first_name }}!</h2>
+    <i class="fa-solid fa-pen" (click)="this.isEditing = !this.isEditing;"></i>
   </div>
   <div class="col-6">
     <div class="mb-3">
       <label for="firstname" class="form-label">First Name</label>
-      <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="firstName" required>
+      <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="customerData.first_name" required [ngClass]="isEditing?'editable': 'nonEditable'">
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required>
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="customerData.email" required [ngClass]="isEditing?'editable': 'nonEditable'">
     </div>
     <div class="mb-3">
       <label for="newpassword" class="form-label">New Password</label>
-      <input type="password" class="form-control" id="newpassword" name="newpassword" [(ngModel)]="newPassword" required>
+      <input type="password" class="form-control" id="newpassword" name="newpassword" [(ngModel)]="customerData.password" required [ngClass]="isEditing?'editable': 'nonEditable'">
     </div>
   </div>
   <div class="col-6">
     <div class="mb-3">
       <label for="lastname" class="form-label">Last Name</label>
-      <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="lastName" required>
+      <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="customerData.last_name" required [ngClass]="isEditing?'editable': 'nonEditable'">
     </div>
     <div class="mb-3">
       <label for="phonenumber" class="form-label">Phone Number</label>
-      <input type="number" class="form-control" id="phonenumber" name="phonenumber" [(ngModel)]="phoneNumber" required>
+      <input type="number" class="form-control" id="phonenumber" name="phonenumber" [(ngModel)]="customerData.phone" required [ngClass]="isEditing?'editable': 'nonEditable'">
     </div>
     <div class="mb-3">
       <label for="confirmpassword" class="form-label">Confirm Password</label>
       <input type="password" class="form-control" id="confirmpassword" name="confirmpassword"
-        [(ngModel)]="confirmPassword" required>
+        [(ngModel)]="customerData.confirm_password" required [ngClass]="isEditing?'editable': 'nonEditable'">
     </div>
   </div>
   <div class="col-12 mb-3">
-    <button type="button" class="btn btn-primary btn-sm" (click)="updateProfile()">Update Profile</button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="updateProfile(); ">Update Profile</button>
   </div>
 </div>

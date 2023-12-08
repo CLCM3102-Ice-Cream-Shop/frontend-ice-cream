@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common'
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { OrderComponent } from './user/order/order.component';
 import { HttpClientModule } from '@angular/common/http';
 import * as $ from "jquery";
 import * as bootstrap from "bootstrap";
+import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,7 @@ import * as bootstrap from "bootstrap";
     LoginComponent,
     RegisterComponent,
     AdminComponent,
+    AdminOrderDetailsComponent,
     DrinksComponent,
     SpecialMenuComponent,
     CartComponent,
@@ -34,6 +37,7 @@ import * as bootstrap from "bootstrap";
     OrderComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

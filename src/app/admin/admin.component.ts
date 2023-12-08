@@ -14,13 +14,14 @@ export class AdminComponent {
     { username: 'akila', password: 'password1' },
     { username: 'rani', password: 'password2' },
   ];
-
+// constructor(private){}
   onSubmit() {
     const user = this.users.find(
       (u) => u.username === this.username && u.password === this.password
     );
     if (user) {
       this.loginMessage = 'Login Successful!';
+
     } else {
       this.loginMessage = 'Login Failed. Please check your username and password.';
     }
