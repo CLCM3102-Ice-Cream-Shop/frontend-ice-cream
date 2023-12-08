@@ -26,10 +26,12 @@ export class CartComponent {
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {
         this.cartItems = response.data.map((item: any) => ({
+          row : item.no,
           item: item.menu_name, 
           toppings: [], 
           count: item.quantity,
-          price: item.price
+          price: item.price,
+          cart_id: item.cart_id 
         }));
       },
       (error) => {
@@ -37,9 +39,26 @@ export class CartComponent {
     );
   }
 
-  public removeItem(index: number): void {
-    this.commonservice.removeFromCart(index);
-    this.getCartItems();
+  public removeItem(itemRow: any): void {
+    const index = this.cartItems.findIndex(item => item.row === itemRow);
+  
+    if (index !== -1) {
+      const cartId = this.cartItems[index].cart_id;
+  
+      const apiUrl = `http://localhost:8080/cart/cancel/${cartId}/${this.cartItems[index].row}`;
+  
+      this.httpClient.delete(apiUrl).subscribe(
+        (response) => {
+          // On successful removal from the server, update the local cartItems array
+          this.cartItems.splice(index, 1);
+        },
+        (error) => {
+          console.error('Error removing item:', error);
+        }
+      );
+    } else {
+      console.error('Item with row ' + itemRow + ' not found.');
+    }
   }
 
   public clearCart(): void {
