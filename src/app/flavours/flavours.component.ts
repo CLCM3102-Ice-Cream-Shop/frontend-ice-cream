@@ -37,7 +37,7 @@ export class FlavoursComponent {
   }
 
   ngOnInit() {
-    const apiUrl = `${environment.apiCustomerUrl}/menu/flavors`; 
+    const apiUrl = `${environment.apiProductUrl}/menu/flavors`; 
     this.httpClient.get<any>(apiUrl)
       .subscribe(
         (response) => {
