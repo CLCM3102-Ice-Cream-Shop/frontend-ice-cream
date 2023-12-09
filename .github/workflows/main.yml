@@ -58,4 +58,3 @@ jobs:
             docker stop frontend-ice-cream-shop && docker rm frontend-ice-cream-shop
             docker run -d -p 8080:80 --name frontend-ice-cream-shop stanthikun802/frontend-ice-cream-shop:latest
             docker image prune -f
-
