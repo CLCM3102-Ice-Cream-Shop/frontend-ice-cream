@@ -28,7 +28,7 @@ services:
       retries: 10
 
   backend-customer-service:
-    image: stanthikun802/backend-customer-service:latest
+    image: stanthikun802/backend-customer-service:docker
     ports:
       - 5000:5000
     expose:
