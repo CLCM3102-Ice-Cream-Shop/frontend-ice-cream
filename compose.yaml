@@ -54,6 +54,3 @@ services:
   #     - 3103:8082
   #   expose:
   #     - 3103
-
-volumes:
-  my-datavolume:
