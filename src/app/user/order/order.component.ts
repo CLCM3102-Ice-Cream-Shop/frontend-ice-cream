@@ -19,7 +19,7 @@ export class OrderComponent {
 
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {
-        console.log('Create new order sucess', response);
+        console.log('Get order detail by customer_id success', response);
         if (response && Array.isArray(response.data)) {
           this.orderItems = response.data.map((order: any) => {
             return {
