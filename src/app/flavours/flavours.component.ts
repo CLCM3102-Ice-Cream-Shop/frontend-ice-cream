@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { CartComponent } from '../user/cart/cart.component';
 import { CommonserviceService } from '../commonservice.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-flavours',
@@ -36,11 +37,10 @@ export class FlavoursComponent {
   }
 
   ngOnInit() {
-    // Make GET request to fetch flavors from the API
-    this.httpClient.get<any>('http://localhost:8081/menu/flavors')
+    const apiUrl = `${environment.apiCustomerUrl}/menu/flavors`; 
+    this.httpClient.get<any>(apiUrl)
       .subscribe(
         (response) => {
-          // Extract 'data' array from the response and assign it to flavoursArray
           if (response && response.data) {
             this.flavoursArray = response.data;
           }
