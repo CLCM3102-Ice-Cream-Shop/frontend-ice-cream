@@ -1,7 +1,6 @@
-CREATE DATABASE `customer`;
-CREATE DATABASE `payment`; 
-CREATE DATABASE `staff`;
-CREATE DATABASE `product`;
+CREATE DATABASE IF NOT EXISTS customer;
+
+USE customer;
 
 CREATE TABLE customer.`customer` (
   `customer_id` varchar(100) NOT NULL,
@@ -13,6 +12,10 @@ CREATE TABLE customer.`customer` (
   PRIMARY KEY (`customer_id`),
   UNIQUE KEY `customer_un` (`email_address`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE DATABASE IF NOT EXISTS staff;
+
+USE staff;
 
 CREATE TABLE staff.`staff` (
   `staff_id` varchar(100) NOT NULL,
@@ -26,6 +29,10 @@ CREATE TABLE staff.`staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+CREATE DATABASE IF NOT EXISTS payment;
+
+USE payment;
+
 CREATE TABLE payment.`cart`(
   `cart_id` varchar(100) NOT NULL,
   `no` int(11) NOT NULL,
@@ -38,16 +45,12 @@ CREATE TABLE payment.`cart`(
   `additional_request` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-
 CREATE TABLE payment.`discounts` (
   `discount_code` varchar(100) NOT NULL,
   `type` varchar(100) NOT NULL,
   `value` decimal(10,0) NOT NULL,
   PRIMARY KEY (`discount_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- payment.orders definition
 
 CREATE TABLE payment.`orders` (
   `order_id` varchar(100) NOT NULL,
@@ -62,7 +65,9 @@ CREATE TABLE payment.`orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- product.menus definition
+CREATE DATABASE IF NOT EXISTS product;
+
+USE product;
 
 CREATE TABLE product.`menus` (
   `menu_id` varchar(10) NOT NULL,
