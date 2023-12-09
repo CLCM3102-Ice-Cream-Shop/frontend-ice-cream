@@ -20,23 +20,27 @@
       </ul>
       <div class="d-flex align-items-center">
         <ul class="navbar-nav">
-          <li class="nav-item" *ngIf="!showLoginName">
-            <a class="nav-link" role="button" aria-current="page">
-              <em  class="fa fa-user" data-bs-toggle="modal" data-bs-target="#userModal" (click)="isLogin=true"></em>
+          <li class="nav-item" *ngIf="!isAuthenticated">
+            <a class="nav-link" role="button" aria-current="page" title="Login">
+              <em  class="fa fa-user" data-bs-toggle="modal" data-bs-target="#userModal" (click)="login()"></em>
             </a>
           </li>
-          <li class="nav-item" *ngIf="showLoginName">
-            <a class="nav-link" role="button" aria-current="page">
-              <span>Akila</span>
-              <em class="fa fa-user"></em>
+          <li class="nav-item" *ngIf="isAuthenticated">
+            <a class="nav-link" role="button" aria-current="page" title="User Profile">
+              <span class="small pe-3">Akila</span>
+              <em class="fa fa-user" (click)="login()"></em>
             </a>
           </li>
-          <li class="nav-item" *ngIf="showLoginName">
-            <a class="nav-link" aria-current="page" routerLink="/cart">
+          <li class="nav-item" *ngIf="isAuthenticated">
+            <a class="nav-link" aria-current="page" routerLink="/cart" title="Cart">
               <em class="fa fa-shopping-cart"></em>
             </a>
           </li>
-          
+          <li class="nav-item" *ngIf="isAuthenticated">
+            <a class="nav-link" role="button" aria-current="page" title="Logout">
+              <i class="fa fa-right-from-bracket"></i>
+            </a>
+          </li>          
         </ul>
       </div>
     </div>
@@ -75,7 +79,7 @@
         <button type="button" #closeLogin class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body p-0">
-        <app-login (enableLogin)="enableLogin($event)" (signin)="signin($event)"></app-login>
+        <app-login [isLoginApp]="isLogin" (enableLogin)="enableLogin($event)" (signin)="signin($event)"></app-login>
       </div>
 
      
