@@ -10,14 +10,16 @@ import { CommonserviceService } from './commonservice.service';
 export class AppComponent {
 
   public isLogin: boolean = false;
-  public userName: string = '';
+  public userName: string | null = null;
   public isAuthenticated: boolean = false;
   @ViewChild('closeLogin') closeLogin: any;
 
-  constructor(public router: Router, private dataService: CommonserviceService) { }
+  constructor(public router: Router, private commonSvc: CommonserviceService) {
+    this.userName = this.commonSvc.getStoredUserName();
+  }
 
   login() {
-    if (this.isAuthenticated) {      
+    if (this.isAuthenticated) {
       this.router.navigate(['./user']);
     } else {
       this.isLogin = true;

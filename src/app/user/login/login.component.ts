@@ -64,6 +64,7 @@ export class LoginComponent {
                 this.isLogin = true;
                 this.userName = response.first_name;
                 this.commonSvc.setCustomerID(response.customer_id);
+                this.commonSvc.setUserName(response.first_name);
                 this.signin.emit(true);
             },
             error: (error) => {

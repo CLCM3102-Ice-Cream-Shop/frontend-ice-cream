@@ -27,7 +27,7 @@
           </li>
           <li class="nav-item" *ngIf="isAuthenticated">
             <a class="nav-link" role="button" aria-current="page" title="User Profile">
-              <span class="small pe-3">Akila</span>
+              <span class="small pe-3">{{ userName }}</span>
               <em class="fa fa-user" (click)="login()"></em>
             </a>
           </li>

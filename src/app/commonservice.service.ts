@@ -93,4 +93,22 @@ export class CommonserviceService {
     const storedData = localStorage.getItem('customerID');
     return storedData !== null ? storedData : null;
   }
+
+  public userName: string | null = null;
+
+  setUserName(userName: string) {
+    this.userName = userName;
+    this.saveUserNameToLocalStorage();
+  }
+
+  public saveUserNameToLocalStorage() {
+    if (this.userName !== null) {
+      localStorage.setItem('userName', this.userName);
+    }
+  }
+
+  public getStoredUserName(): string | null {
+    const storedData = localStorage.getItem('userName');
+    return storedData !== null ? storedData : null;
+  }
 }
