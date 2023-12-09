@@ -154,17 +154,43 @@ export class FlavoursComponent {
   }
 
   public addToCart() {
-    const iceCreamDetail = {
-      flavour: this.selectedFlavor.fName,
-      type: this.selectedType,
-      size: this.selectedSize,
-      toppings: this.selectedToppings,
-      customerComments: this.additionalRequest,
-      count: this.counterValue,
-      price: this.priceVal,
-      displayPic: this.selectedFlavor.displayPic
+    // const iceCreamDetail = {
+    //   flavour: this.selectedFlavor.fName,
+    //   type: this.selectedType,
+    //   size: this.selectedSize,
+    //   toppings: this.selectedToppings,
+    //   customerComments: this.additionalRequest,
+    //   count: this.counterValue,
+    //   price: this.priceVal,
+    //   displayPic: this.selectedFlavor.displayPic
+    // };
+    const request = {
+      // customer_id: this.firstName,
+      // menu_id: this.lastName,
+      quantity: this.counterValue,
+      // properties: this.phoneNumber,
+      additional_request: this.additionalRequest
     };
-    this.commonservice.addToCart(iceCreamDetail);
+    const apiUrl = `${environment.apiPaymentUrl}/cart`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.httpClient.post<any>(apiUrl, request, { headers }).subscribe(
+      (response) => {
+        if (response && response.data && Array.isArray(response.data.cart_detail)) {
+          // const cartDetail = response.data.cart_detail;
+          // this.cartId = response.data.cart_id;
+          // this.cartItems = cartDetail.map((item: any) => ({
+          //   row: item.no,
+          //   item: item.menu_name,
+          //   toppings: [],
+          //   count: item.quantity,
+          //   price: item.price
+          // }));
+        }
+      },
+      (error) => {
+      }
+    );
+    // this.commonservice.addToCart(iceCreamDetail);
     this.clearForm();
     this.closeFlavModal.nativeElement.click();
   }
