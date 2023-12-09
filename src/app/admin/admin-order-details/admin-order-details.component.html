@@ -7,22 +7,21 @@
           <div>
             <h5 class="card-title">Order Details</h5>
             <div>
-              <span *ngIf="item.orderid != null"> <strong>Order ID:</strong> {{ item.orderid }}<br> </span>
-              <span *ngIf="item.flavour  != null "> <strong>Flavour:</strong> {{ item.flavour }}<br></span>
-              <span *ngIf="item.type  != null "> <strong>Type:</strong> {{ item.type }}<br> </span>
-              <span *ngIf="item.size  != null "> <strong>Size:</strong>{{ item.size }} <br></span>
-              <span *ngIf="item.productType != 'specialMenu'"> <strong>Toppings:</strong>
-                <ul>
-                  <li *ngFor="let topping of item.toppings">{{ topping.name }}</li>
-                </ul>
+              <span *ngIf="item.orderId !== null">
+                <strong>Order ID:</strong> {{ item.orderId }}<br>
+                <hr>
               </span>
-              <span *ngIf="item.customerComments != null"> <strong>Customer Comments:</strong> {{ item.customerComments
-                }}</span> <br>
-              <strong>Count:</strong> {{ item.count }} <br>
-              <strong>Price:</strong> ${{ item.price}}
+              <div *ngFor="let detail of item.cartDetail; let last = last">
+                <strong>Menu:</strong> {{ detail.menuName }}<br>
+                <strong>Price:</strong> ${{ detail.price }}<br>
+                <strong>Quantity:</strong> {{ detail.quantity }}<br>
+                <strong>Additional Request:</strong> {{ detail.additionalRequest }}<br>
+                <hr *ngIf="!last"> <!-- Add horizontal line except for the last cart detail -->
+              </div>
             </div>
           </div>
-          <div class="d-flex actionWrap"> <i class="fa-solid fa-check" style="color: green;"></i>
+          <div class="d-flex actionWrap">
+            <i class="fa-solid fa-check" style="color: green;"></i>
             <i class="fa-solid fa-xmark" style="color: red;"></i>
           </div>
         </div>
