@@ -23,21 +23,21 @@ export class CartComponent {
   public getCartItems(): void {
 
     const storedCustomerID = this.commonservice.getStoredCustomerID();
-
     const apiUrl = `${environment.apiPaymentUrl}/cart/customer/${storedCustomerID}`;
 
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {
-        const cartDetail = response.data.cart_detail;
-        this.cartId = response.data.cart_id;
-        this.cartItems = cartDetail.map((item: any) => ({
-          row: item.no,
-          item: item.menu_name,
-          toppings: [],
-          count: item.quantity,
-          price: item.price,
-          no: item.no
-        }));
+        if (response && response.data && Array.isArray(response.data.cart_detail)) {
+          const cartDetail = response.data.cart_detail;
+          this.cartId = response.data.cart_id;
+          this.cartItems = cartDetail.map((item: any) => ({
+            row: item.no,
+            item: item.menu_name,
+            toppings: [],
+            count: item.quantity,
+            price: item.price
+          }));
+        }
       },
       (error) => {
       }

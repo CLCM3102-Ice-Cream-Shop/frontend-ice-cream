@@ -20,21 +20,23 @@ export class OrderComponent {
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {
         console.log('Create new order sucess', response);
-        this.orderItems = response.data.map((order: any) => {
-          return {
-            orderDate: new Date(order.date_time).toLocaleDateString(), 
-            totalPrice: parseFloat(order.total_amount),
-            orderStatus: order.status,
-            orderId: order.order_id,
-            orderDetails: order.cart_detail.map((detail: any) => ({
-              no: detail.no,
-              item: detail.menu_name,
-              additionalRequest: detail.additional_request, 
-              price: parseFloat(detail.price),
-              count: detail.quantity
-            }))
-          };
-        });
+        if (response && Array.isArray(response.data)) {
+          this.orderItems = response.data.map((order: any) => {
+            return {
+              orderDate: new Date(order.date_time).toLocaleDateString(),
+              totalPrice: parseFloat(order.total_amount),
+              orderStatus: order.status,
+              orderId: order.order_id,
+              orderDetails: Array.isArray(order.CartDetail) ? order.CartDetail.map((detail: any) => ({
+                no: detail.no,
+                item: detail.menu_name,
+                additionalRequest: detail.additional_request,
+                price: parseFloat(detail.price),
+                count: detail.quantity
+              })) : []
+            };
+          });
+        }
       },
       (error) => {
         console.error(`Error can't get order detail:`, error);
