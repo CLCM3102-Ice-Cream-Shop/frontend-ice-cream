@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -16,7 +17,7 @@ export class AdminComponent {
     { username: 'akila', password: 'password1' },
     { username: 'rani', password: 'password2' },
   ];
-constructor(private httpClient: HttpClient){}
+constructor(private httpClient: HttpClient, private router: Router){}
   onSubmit() {
     const userData = {
       email: this.username,
@@ -28,7 +29,8 @@ constructor(private httpClient: HttpClient){}
         this.httpClient.post<any>(apiUrl, userData, { headers }).subscribe({
             next: (response) => {
                 console.log("Login successful", response)
-                this.loginMessage = 'Login Successful!';
+                alert("Login Successful!")
+                this.router.navigate(['/adminOrderDetails']);
             },
             error: (error) => {
                 console.error('Login error', error);
