@@ -77,4 +77,17 @@ export class AdminOrderDetailsComponent {
         console.error("Error can't cancel order", error)
       });
   }
+
+  generateReport(): void {
+    const apiUrl = `${environment.apiReportUrl}/report/generate`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.httpClient.post<any>(apiUrl, { headers }).subscribe(
+      (response) => {
+        console.log("Generate report success", response)
+        alert("Generate report success")
+      },
+      (error) => {
+        console.error("Error can't generate report", error)
+      });
+  }
 }
