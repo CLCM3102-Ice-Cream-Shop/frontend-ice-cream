@@ -46,14 +46,30 @@ export class AdminOrderDetailsComponent {
         }
       },
       (error) => {
-      }
-    );
+        console.error("Error can't get active orders", error)
+      });
+  }
 
-    // this.cartItems = this.commonservice.getCartItems();
-    // }
-    // });
-    //   console.log(this.cartItems, "at admin order details page");
-    // }
-
+  proceedOrder(orderId: string) {
+    const apiUrl = `${environment.apiPaymentUrl}/order/proceed/${orderId}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    this.httpClient.post<any>(apiUrl, { headers }).subscribe(
+      (response) => {
+        console.log("Proceed order success",response)
+      },
+      (error) => {
+        console.error("Error can't proceed order", error)
+      });
+  }
+  
+  cancelOrder(orderId: string) {
+    const apiUrl = `${environment.apiPaymentUrl}/order/cancel/${orderId}`;
+    this.httpClient.delete<any>(apiUrl).subscribe(
+      (response) => {
+        console.log("Cancel order success", response)
+      },
+      (error) => {
+        console.error("Error can't cancel order", error)
+      });
   }
 }

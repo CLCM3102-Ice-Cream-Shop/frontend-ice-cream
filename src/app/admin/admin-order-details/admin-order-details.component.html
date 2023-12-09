@@ -21,8 +21,8 @@
             </div>
           </div>
           <div class="d-flex actionWrap">
-            <i class="fa-solid fa-check" style="color: green;"></i>
-            <i class="fa-solid fa-xmark" style="color: red;"></i>
+            <i class="fa-solid fa-check" style="color: green; cursor: pointer;" (click)="proceedOrder(item.orderId)"></i>
+            <i class="fa-solid fa-xmark" style="color: red; cursor: pointer;" (click)="cancelOrder(item.orderId)"></i>
           </div>
         </div>
       </div>
