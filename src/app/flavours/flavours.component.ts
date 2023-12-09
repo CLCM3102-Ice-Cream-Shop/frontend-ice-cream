@@ -15,6 +15,7 @@ export class FlavoursComponent {
   public selectedSize: string = ''; // To store the selected size
   private selectedToppings: any = []; // To store the selected toppings
   public additionalRequest: string = ''; // To store additional comments
+  public selectedId: string = '';
   public selectedFlavor: any;
   public toppings: any[] = [
     { id: 1, name: 'Oreo Crumbs', isSelected: false },
@@ -154,19 +155,21 @@ export class FlavoursComponent {
   }
 
   public addToCart() {
-    // const iceCreamDetail = {
-    //   flavour: this.selectedFlavor.fName,
-    //   type: this.selectedType,
-    //   size: this.selectedSize,
-    //   toppings: this.selectedToppings,
-    //   customerComments: this.additionalRequest,
-    //   count: this.counterValue,
-    //   price: this.priceVal,
-    //   displayPic: this.selectedFlavor.displayPic
-    // };
+    const iceCreamDetail = {
+      flavour: this.selectedFlavor.fName,
+      type: this.selectedType,
+      size: this.selectedSize,
+      toppings: this.selectedToppings,
+      customerComments: this.additionalRequest,
+      count: this.counterValue,
+      price: this.priceVal,
+      displayPic: this.selectedFlavor.displayPic
+    };
+
+    const storedCustomerID = this.commonservice.getStoredCustomerID();
     const request = {
-      // customer_id: this.firstName,
-      // menu_id: this.lastName,
+      customer_id: storedCustomerID,
+      menu_id: this.selectedId,
       quantity: this.counterValue,
       // properties: this.phoneNumber,
       additional_request: this.additionalRequest
@@ -175,19 +178,12 @@ export class FlavoursComponent {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     this.httpClient.post<any>(apiUrl, request, { headers }).subscribe(
       (response) => {
-        if (response && response.data && Array.isArray(response.data.cart_detail)) {
-          // const cartDetail = response.data.cart_detail;
-          // this.cartId = response.data.cart_id;
-          // this.cartItems = cartDetail.map((item: any) => ({
-          //   row: item.no,
-          //   item: item.menu_name,
-          //   toppings: [],
-          //   count: item.quantity,
-          //   price: item.price
-          // }));
+        if (response && response.data) {
+          console.log("Add item to cart success", response)
         }
       },
       (error) => {
+        console.log("Error can't add item to cart", error)
       }
     );
     // this.commonservice.addToCart(iceCreamDetail);
@@ -201,6 +197,7 @@ export class FlavoursComponent {
     this.originalPrice = this.flavoursArray[indx].price;
     this.priceVal = this.originalPrice;
     this.selectedFlavor.displayPic = this.flavoursArray[indx].displayPic;
+    this.selectedId = this.flavoursArray[indx].id;
   }
 
   private clearForm() {
@@ -210,6 +207,7 @@ export class FlavoursComponent {
     this.additionalRequest = '';
     this.counterValue = 1;
     this.toppings.forEach((topping: any) => topping.isSelected = false);
+    this.selectedId = '';
   }
 
 }
