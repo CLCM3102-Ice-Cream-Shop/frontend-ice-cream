@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonserviceService } from 'src/app/commonservice.service';
-
+import { environment } from 'src/environments/environment';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -54,7 +54,7 @@ export class LoginComponent {
             password: this.password,
         };
 
-        const apiUrl = 'http://localhost:5000/login'; // Replace with your server URL
+        const apiUrl = `${environment.apiCustomerUrl}/customer/login`;
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
         this.httpClient.post<any>(apiUrl, userData, { headers }).subscribe({
