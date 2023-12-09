@@ -11,9 +11,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AdminOrderDetailsComponent {
   public cartItems: any[] = [];
 
-  constructor(private commonservice: CommonserviceService, private httpClient: HttpClient,) { }
+  constructor(private httpClient: HttpClient,) { }
+  ngOnInit(): void{
+    this.fetchCartData();
+  }
 
-  ngOnInit(): void {
+  fetchCartData(): void {
     const apiUrl = `${environment.apiPaymentUrl}/order/active`;
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {
@@ -56,6 +59,7 @@ export class AdminOrderDetailsComponent {
     this.httpClient.post<any>(apiUrl, { headers }).subscribe(
       (response) => {
         console.log("Proceed order success",response)
+        this.fetchCartData();
       },
       (error) => {
         console.error("Error can't proceed order", error)
@@ -67,6 +71,7 @@ export class AdminOrderDetailsComponent {
     this.httpClient.delete<any>(apiUrl).subscribe(
       (response) => {
         console.log("Cancel order success", response)
+        this.fetchCartData();
       },
       (error) => {
         console.error("Error can't cancel order", error)
