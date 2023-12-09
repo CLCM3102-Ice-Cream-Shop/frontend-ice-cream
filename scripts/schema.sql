@@ -13,11 +13,7 @@ CREATE TABLE customer.`customer` (
   UNIQUE KEY `customer_un` (`email_address`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE DATABASE IF NOT EXISTS staff;
-
-USE staff;
-
-CREATE TABLE staff.`staff` (
+CREATE TABLE customer.`staff` (
   `staff_id` varchar(100) NOT NULL,
   `first_name` varchar(256) NOT NULL,
   `last_name` varchar(256) NOT NULL,
