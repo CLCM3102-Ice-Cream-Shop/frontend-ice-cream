@@ -20,20 +20,25 @@ export class ProfileComponent implements OnInit {
     confirm_password: '',
   };
 
-
   constructor(private customerService: CustomerService, private dataService: CommonserviceService, private httpClient: HttpClient) { }
   public isEditing: boolean = false;
   ngOnInit() {
-    const details = this.dataService.getStoredCustomerDetails() || {};
-    this.customerData.first_name = details[0].first_name;
-    this.customerData.last_name = details[0].last_name;
-    this.customerData.email = details[0].email;
-    this.customerData.phone = details[0].phone;
-    this.customerData.password = details[0].password;
-    this.customerData.confirm_password = details[0].confirm_password;
 
-
-    console.log(this.customerData)
+    const storedCustomerID  = this.dataService.getStoredCustomerID();
+    const apiUrl = `${environment.apiCustomerUrl}/customer/${storedCustomerID}`; 
+    this.httpClient.get<any>(apiUrl)
+      .subscribe(
+        (response) => {
+          console.log('Get customer information successful:', response);
+          this.customerData.first_name = response.customer.first_name;
+          this.customerData.last_name = response.customer.last_name;
+          this.customerData.email = response.customer.email_address;
+          this.customerData.phone = response.customer.phone_number;
+        },
+        (error) => {
+          console.error('Error during get customer information:', error);
+        }
+      );
   }
 
   updateProfile() {
