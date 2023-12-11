@@ -8,9 +8,9 @@ services:
     environment:
       NODE_ENV: docker
     ports:
-      - 4200:4200
+      - 8080:80
     expose:
-      - '4200'
+      - '80'
   db:
     image: mysql
     restart: always
@@ -50,7 +50,7 @@ services:
     ports:
       - 3101:8080
     expose:
-      - 3101
+      - 8080
 
   backend-product-service:
     image: stanthikun802/backend-product-service:docker
@@ -61,7 +61,7 @@ services:
     ports:
       - 3102:8081
     expose:
-      - 3102
+      - 8081
 
   backend-report-service:
     image: stanthikun802/backend-report-service:docker
@@ -72,4 +72,4 @@ services:
     ports:
       - 3103:8082
     expose:
-      - 3103
+      - 8082
