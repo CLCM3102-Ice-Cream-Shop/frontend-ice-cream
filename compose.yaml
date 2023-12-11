@@ -2,8 +2,11 @@ services:
   server:
     build:
       context: .
+      args:
+        progress: plain
+        NODE_ENV: docker
     environment:
-      NODE_ENV: production
+      NODE_ENV: docker
     ports:
       - 4200:4200
     expose:
@@ -29,28 +32,44 @@ services:
 
   backend-customer-service:
     image: stanthikun802/backend-customer-service:docker
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - 5000:5000
     expose:
       - 5000
 
-  # backend-payment-service:
-  #   image: stanthikun802/backend-payment-service:latest
-  #   ports:
-  #     - 3101:8080
-  #   expose:
-  #     - 3101
+  backend-payment-service:
+    image: stanthikun802/backend-payment-service:docker
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 3101:8080
+    expose:
+      - 3101
 
-  # backend-product-service:
-  #   image: stanthikun802/backend-product-service:latest
-  #   ports:
-  #     - 3102:8081
-  #   expose:
-  #     - 3102
+  backend-product-service:
+    image: stanthikun802/backend-product-service:docker
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 3102:8081
+    expose:
+      - 3102
 
-  # backend-report-service:
-  #   image: stanthikun802/backend-report-service:latest
-  #   ports:
-  #     - 3103:8082
-  #   expose:
-  #     - 3103
+  backend-report-service:
+    image: stanthikun802/backend-report-service:docker
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 3103:8082
+    expose:
+      - 3103
