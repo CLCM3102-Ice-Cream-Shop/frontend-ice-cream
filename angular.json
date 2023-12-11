@@ -63,6 +63,20 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "docker": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.docker.ts"
+                }
+              ],
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -75,6 +89,9 @@
             },
             "development": {
               "browserTarget": "iceCreamShopApp:build:development"
+            },
+            "docker": {
+              "browserTarget": "iceCreamShopApp:build:docker"
             }
           },
           "defaultConfiguration": "development"

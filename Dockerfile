@@ -37,7 +37,11 @@ CMD ["npm", "start"]
 FROM development AS build
 
 # Build the Angular application for production.
-RUN npm run build -- --configuration=production
+ARG NODE_ENV
+ENV NODE_ENV=${NODE_ENV}
+RUN echo ${NODE_ENV}
+
+RUN npm run build -- --configuration=$NODE_ENV
 
 ################################################################################
 # Create a final stage for serving the built application with Nginx.

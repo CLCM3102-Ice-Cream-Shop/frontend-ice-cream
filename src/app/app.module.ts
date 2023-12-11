@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import * as $ from "jquery";
 import * as bootstrap from "bootstrap";
 import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,7 @@ import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-or
     FormsModule,
     HttpClientModule
   ],
-  providers: [CommonserviceService],
+  providers: [CommonserviceService, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

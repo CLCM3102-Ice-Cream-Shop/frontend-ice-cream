@@ -2,34 +2,77 @@ services:
   server:
     build:
       context: .
+      args:
+        progress: plain
+        NODE_ENV: docker
     environment:
-      NODE_ENV: production
+      NODE_ENV: docker
     ports:
-      - 4200:4200
+      - 8080:80
     expose:
-      - '4200'
+      - '80'
   db:
     image: mysql
     restart: always
-    volumes:
-      - my-datavolume:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: 'product'
-      # So you don't have to use root, but you can if you like
       MYSQL_USER: 'user'
-      # You can use whatever password you like
       MYSQL_PASSWORD: 'password'
-      # Password for root access
       MYSQL_ROOT_PASSWORD: 'password'
     ports:
-      # <Port exposed> : <MySQL Port running inside container>
-      - '3307:3306'
+      - '3306:3306'
     expose:
-      # Opens port 3306 on the container
       - '3306'
+    volumes:
+      - db_data:/var/lib/mysql  # Mount a named volume to store MySQL data
+      - "./scripts/schema.sql:/docker-entrypoint-initdb.d/1.sql"
+      - "./scripts/data.sql:/docker-entrypoint-initdb.d/2.sql"
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
+
+  backend-customer-service:
+    image: stanthikun802/backend-customer-service:docker
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 5000:5000
+    expose:
+      - 5000
+
+  backend-payment-service:
+    image: stanthikun802/backend-payment-service:docker
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 3101:8080
+    expose:
+      - 8080
+
+  backend-product-service:
+    image: stanthikun802/backend-product-service:docker
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 3102:8081
+    expose:
+      - 8081
+
+  backend-report-service:
+    image: stanthikun802/backend-report-service:docker
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 3103:8082
+    expose:
+      - 8082
 volumes:
-  my-datavolume:
+  db_data:  

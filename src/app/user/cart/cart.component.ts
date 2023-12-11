@@ -108,4 +108,6 @@ export class CartComponent {
       this.commonservice.updateCart(item);
     }
   }
+
+
 }

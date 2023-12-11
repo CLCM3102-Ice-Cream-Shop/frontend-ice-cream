@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonserviceService } from './commonservice.service';
-import * as $ from "jquery";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,27 +9,32 @@ import * as $ from "jquery";
 })
 export class AppComponent {
 
-  isLogin: boolean = false;
-  public userName :string ='';
-  @ViewChild('userModal') userModal: any;
- 
-  @ViewChild('testModal') testModal: any;
+  public isLogin: boolean = false;
+  public userName: string | null = null;
+  public isAuthenticated: boolean = false;
+  @ViewChild('closeLogin') closeLogin: any;
 
-  constructor(public router: Router, private dataService : CommonserviceService){}
-  public showLoginName:boolean = false;
-ngOnInit(){}
+  constructor(public router: Router, private commonSvc: CommonserviceService) {
+    this.userName = this.commonSvc.getStoredUserName();
+  }
+
+  login() {
+    if (this.isAuthenticated) {
+      this.router.navigate(['./user']);
+    } else {
+      this.isLogin = true;
+    }
+  }
+
   enableLogin(event: boolean) {
     this.isLogin = event;
-      
-    console.log(this.isLogin)
-
+    console.log(this.isLogin);
   }
 
-  signin(event: any ) {
-    this.showLoginName = true;
-    if(this.showLoginName){
-      // this.userName =name;
-    }
+  signin(event: any) {
+    this.closeLogin.nativeElement.click();
+    this.isAuthenticated = true;
     this.router.navigate(['./user']);
   }
+
 }

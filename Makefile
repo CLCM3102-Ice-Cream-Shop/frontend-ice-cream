@@ -6,7 +6,10 @@ CONTAINER_NAME := frontend-ice-cream-shop
 
 # Build the Docker image
 build:
-	docker build -t $(IMAGE_NAME) .
+	docker build -t $(IMAGE_NAME) . --build-arg NODE_ENV=production
+
+run: stop
+	docker run --name $(IMAGE_NAME) -p 8080:80 $(IMAGE_NAME)
 
 # Stop and remove the running container
 stop:
