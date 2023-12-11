@@ -29,7 +29,7 @@ CREATE DATABASE IF NOT EXISTS payment;
 
 USE payment;
 
-CREATE TABLE payment.`cart`(
+CREATE TABLE payment.`carts`(
   `cart_id` varchar(100) NOT NULL,
   `no` int(11) NOT NULL,
   `customer_id` varchar(100) NOT NULL,
