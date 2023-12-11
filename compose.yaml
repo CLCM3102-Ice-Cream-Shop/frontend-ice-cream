@@ -74,3 +74,5 @@ services:
       - 3103:8082
     expose:
       - 8082
+volumes:
+  db_data:  
