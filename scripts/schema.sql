@@ -68,7 +68,7 @@ USE product;
 CREATE TABLE product.`menus` (
   `menu_id` varchar(10) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `description` varchar(100) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `display_pic` varchar(100) DEFAULT NULL,
   `price` decimal(10,2) NOT NULL,
   PRIMARY KEY (`menu_id`)
