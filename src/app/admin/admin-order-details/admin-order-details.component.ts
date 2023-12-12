@@ -46,7 +46,7 @@ export class AdminOrderDetailsComponent {
             };
           });
          this.cartItems=mappedData
-          
+        console.log(this.cartItems);
         }
       },
       (error) => {

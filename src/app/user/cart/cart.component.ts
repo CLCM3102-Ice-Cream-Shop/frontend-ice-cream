@@ -78,6 +78,7 @@ export class CartComponent {
       (response) => {
         console.log('Create new order sucess', response);
         alert("Create order successful!")
+        this.cartItems = [];
       },
       (error) => {
         console.error('Error create new order:', error);
