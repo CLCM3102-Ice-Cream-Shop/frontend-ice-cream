@@ -88,6 +88,7 @@ export class AdminOrderDetailsComponent {
       },
       (error) => {
         console.error("Error can't generate report", error)
+        alert("There are something wrong. Can't generate report")
       });
   }
 }
