@@ -9,7 +9,7 @@
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required>
-                <span class="text-danger" *ngIf="pswrdInvalid">Please provide email ID</span>
+                <span class="text-danger" *ngIf="pswrdInvalid">Please provide password</span>
             </div>
             <div class="mb-3" *ngIf="isUserInvalid">
                 <span class="text-danger">User not found. Please register to login.</span>

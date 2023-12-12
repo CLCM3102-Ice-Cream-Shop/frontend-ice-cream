@@ -27,7 +27,7 @@ export class OrderComponent {
               totalPrice: parseFloat(order.total_amount),
               orderStatus: order.status,
               orderId: order.order_id,
-              orderDetails: Array.isArray(order.CartDetail) ? order.CartDetail.map((detail: any) => ({
+              orderDetails: Array.isArray(order.cart_detail) ? order.cart_detail.map((detail: any) => ({
                 no: detail.no,
                 item: detail.menu_name,
                 additionalRequest: detail.additional_request,
@@ -36,6 +36,8 @@ export class OrderComponent {
               })) : []
             };
           });
+
+          console.log(this.orderItems);
         }
       },
       (error) => {
