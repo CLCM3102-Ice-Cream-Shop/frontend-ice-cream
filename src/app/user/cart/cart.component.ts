@@ -77,9 +77,11 @@ export class CartComponent {
     this.httpClient.post<any>(apiUrl, request, { headers }).subscribe(
       (response) => {
         console.log('Create new order sucess', response);
+        alert("Create order successful!")
       },
       (error) => {
         console.error('Error create new order:', error);
+        alert("Can't create order, please try again")
       }
     );
   }
