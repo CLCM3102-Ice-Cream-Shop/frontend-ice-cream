@@ -40,6 +40,7 @@ export class AdminOrderDetailsComponent {
                 additionalRequest: detail.additional_request
               })),
               subTotal: parseFloat(item.sub_total),
+              discountCode: item.discount_code,
               totalAmount: parseFloat(item.total_amount),
               dateTime: new Date(item.date_time),
               status: item.status
