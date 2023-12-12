@@ -7,7 +7,8 @@
       </li>
       <li class="nav-link mb-3 p-3 shadow" id="report-tab" role="tab" data-bs-toggle="tab" data-bs-target="#report"
         aria-controls="report" aria-selected="false">
-        <button class="btn btn-primary btn-sm" (click)="generateReport()" data-bs-toggle="modal" data-bs-target="#generateReportModal" >Generate Report</button>
+        <button class="btn btn-primary btn-sm" (click)="generateReport()" data-bs-toggle="modal"
+          data-bs-target="#generateReportModal">Generate Report</button>
       </li>
     </ul>
   </div>
@@ -24,9 +25,14 @@
                   <div>
                     <h5 class="card-title">Order Details</h5>
                     <div>
-                      <span *ngIf="item.customerId  != null "> <strong>Customer ID:</strong> {{ item. customerId}}<br> </span>
-                      <span *ngIf="innerItem.menuId != null"> <strong>Menu ID:</strong> {{ innerItem. menuId}}<br> </span>
-                      <span *ngIf="innerItem.menuName  != null "> <strong>Menu :</strong> {{ innerItem.menuName }}<br></span>
+                      <span *ngIf="item.customerId  != null "> <strong>Order ID:</strong> {{ item. orderId}}<br>
+                      </span>
+                      <span *ngIf="item.customerId  != null "> <strong>Customer ID:</strong> {{ item. customerId}}<br>
+                      </span>
+                      <span *ngIf="innerItem.menuId != null"> <strong>Menu ID:</strong> {{ innerItem. menuId}}<br>
+                      </span>
+                      <span *ngIf="innerItem.menuName  != null "> <strong>Menu :</strong> {{ innerItem.menuName
+                        }}<br></span>
                       <span *ngIf="item.type  != null "> <strong>Type:</strong> {{ item.type }}<br> </span>
                       <span *ngIf="item.size  != null "> <strong>Size:</strong>{{ item.size }} <br></span>
                       <!-- <span *ngIf="item.customerComments != null"> <strong>Customer Comments:</strong> {{
@@ -36,8 +42,8 @@
                       <strong>Price:</strong> ${{ innerItem.price}}
                     </div>
                   </div>
-                  <div class="d-flex actionWrap"> <i class="fa-solid fa-check" style="color: green;"></i>
-                    <i class="fa-solid fa-xmark" style="color: red;"></i>
+                  <div class="d-flex actionWrap"> <i class="fa-solid fa-check" style="color: green;" (click)="proceedOrder(item.orderId)"></i>
+                    <i class="fa-solid fa-xmark" style="color: red;" (click)="cancelOrder(item.orderId)"></i>
                   </div>
                 </div>
               </div>
@@ -45,17 +51,17 @@
           </div>
         </div>
       </div>
-      </div>
-  </div>
-</div>
-<div class="modal fade" id="generateReportModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-aria-labelledby="generateReportModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-body d-flex align-items-center justify-content-between">
-      Report generated successfully!!!
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
   </div>
 </div>
+<div class="modal fade" id="generateReportModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="generateReportModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body d-flex align-items-center justify-content-between">
+        Report generated successfully!!!
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
 </div>
