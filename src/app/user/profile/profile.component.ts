@@ -19,13 +19,13 @@ export class ProfileComponent implements OnInit {
     password: '',
     confirm_password: '',
   };
-
+  public isValueChanged: boolean = false;
   constructor(private customerService: CustomerService, private dataService: CommonserviceService, private httpClient: HttpClient) { }
   public isEditing: boolean = false;
   ngOnInit() {
 
-    const storedCustomerID  = this.dataService.getStoredCustomerID();
-    const apiUrl = `${environment.apiCustomerUrl}/customer/${storedCustomerID}`; 
+    const storedCustomerID = this.dataService.getStoredCustomerID();
+    const apiUrl = `${environment.apiCustomerUrl}/customer/${storedCustomerID}`;
     this.httpClient.get<any>(apiUrl)
       .subscribe(
         (response) => {
@@ -39,20 +39,23 @@ export class ProfileComponent implements OnInit {
           console.error('Error during get customer information:', error);
         }
       );
-  }
 
+
+
+  }
   updateProfile() {
+    if (this.isValueChanged) {
+     
     const userData = {
-      first_name:  this.customerData.first_name,
+      first_name: this.customerData.first_name,
       last_name: this.customerData.last_name,
       email: this.customerData.email,
       phone: this.customerData.phone,
       password: this.customerData.password,
       confirm_password: this.customerData.confirm_password
     };
-    const storedCustomerID  = this.dataService.getStoredCustomerID();
-
-    const apiUrl = `${environment.apiCustomerUrl}/customer/${storedCustomerID}`; 
+    const storedCustomerID = this.dataService.getStoredCustomerID();
+    const apiUrl = `${environment.apiCustomerUrl}/customer/${storedCustomerID}`;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     this.httpClient.put<any>(apiUrl, userData, { headers })
@@ -66,7 +69,10 @@ export class ProfileComponent implements OnInit {
           alert('Error: update is not complete.');
         }
       );
-
-    // this.customerService.setCustomerData(this.customerData);
+    }
+    this.isEditing = false;
+    this.isValueChanged = false;
   }
+
 }
+

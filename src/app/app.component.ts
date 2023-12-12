@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonserviceService } from './commonservice.service';
 
@@ -13,11 +13,15 @@ export class AppComponent {
   public userName: string | null = null;
   public isAuthenticated: boolean = false;
   @ViewChild('closeLogin') closeLogin: any;
+ngOnInit(){
 
+}
   constructor(public router: Router, private commonSvc: CommonserviceService) {
-    this.userName = this.commonSvc.getStoredUserName();
   }
+  ngOnChanges(changes: SimpleChanges): void {
+  this.userName = this.commonSvc.getStoredUserName();
 
+  }
   login() {
     if (this.isAuthenticated) {
       this.router.navigate(['./user']);
@@ -37,4 +41,8 @@ export class AppComponent {
     this.router.navigate(['./user']);
   }
 
+  logout(){
+    this.isAuthenticated=false;
+    this.router.navigate(['/home'])
+  }
 }
