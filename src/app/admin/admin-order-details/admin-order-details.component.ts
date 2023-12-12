@@ -37,6 +37,9 @@ export class AdminOrderDetailsComponent {
                 quantity: detail.quantity,
                 status: detail.status,
                 properties: detail.properties,
+                type: detail.properties.type,
+                size: detail.properties.size,
+                toppings: detail.properties.toppings,
                 additionalRequest: detail.additional_request
               })),
               subTotal: parseFloat(item.sub_total),
@@ -93,4 +96,5 @@ export class AdminOrderDetailsComponent {
         alert("There are something wrong. Can't generate report")
       });
   }
+
 }
