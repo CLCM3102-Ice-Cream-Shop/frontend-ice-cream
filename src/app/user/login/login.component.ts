@@ -18,15 +18,25 @@ export class LoginComponent {
     @Output() enableLogin: EventEmitter<any> = new EventEmitter();
     @Output() signin: EventEmitter<any> = new EventEmitter();
     @Input() isLoginApp: boolean;
-
+    public registeredCustomerDetails:any=[];
+    userData = {
+        email: '',
+        password: '',
+    };
+    ngOnInit() {
+        const obj = this.dataService.getStoredCustomerDetails() || [{}];
+        this.registeredCustomerDetails.push(obj)
+       
+     }
     constructor(
         private httpClient: HttpClient,
-        private commonSvc: CommonserviceService
+        private commonSvc: CommonserviceService,private dataService:CommonserviceService
     ) {}
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['isLoginApp']) {
-            this.isLogin = this.isLoginApp;            
+            this.isLogin = this.isLoginApp;        
+            this.reset();    
         }
     }
 
@@ -49,30 +59,46 @@ export class LoginComponent {
             this.emailInvalid = false;
             this.pswrdInvalid = false;
         }
-        const userData = {
+         this.userData = {
             email: this.email,
             password: this.password,
         };
-
+        if(this.registeredCustomerDetails.length<0){
+            const obj = this.dataService.getStoredCustomerDetails() || [{}];
+            this.registeredCustomerDetails.push(obj);
+            console.log(this.registeredCustomerDetails)
+        }
+        const user = this.registeredCustomerDetails.find(
+            (u:any) => u.email === this.email && u.password === this.password
+          );
+          if (user) {
+            this.isLogin = true;
+            // this.dataService.loginUser(this.email)
+            this.signin.emit(true);
+            
+      
+          } else {
+        //    alert('Login Failed. Please check your username and password.')
+          }
         const apiUrl = `${environment.apiCustomerUrl}/customer/login`;
         const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-        this.httpClient.post<any>(apiUrl, userData, { headers }).subscribe({
+        this.httpClient.post<any>(apiUrl, this.userData, { headers }).subscribe({
             next: (response) => {
                 console.log(response, "username")
                 alert('Login successful!');
                 this.isLogin = true;
                 this.userName = response.first_name;
-                this.commonSvc.setCustomerID(response.customer_id);
-                this.commonSvc.setUserName(response.first_name);
+                this.commonSvc.setCustomerIDAndName(response.customer_id, response.first_name);
+                // this.commonSvc.setUserName(response.first_name);
+
                 this.signin.emit(true);
             },
             error: (error) => {
                 this.isUserInvalid = true;
                 console.error('Login error', error);
                 alert("Please register to login");
-                // remove after API works.
-                this.signin.emit(true);
+                this.isLogin=false;
             }
         });
     }
@@ -85,5 +111,11 @@ export class LoginComponent {
     switchToLogin(event: boolean) {
         this.isLogin = event;
         this.enableLogin.emit(this.isLogin);
+    }
+    reset(){
+        this.userData = {
+            email: '',
+            password: '',
+        };
     }
 }

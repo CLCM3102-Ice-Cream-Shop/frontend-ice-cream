@@ -20,6 +20,7 @@ export class AdminOrderDetailsComponent {
     const apiUrl = `${environment.apiPaymentUrl}/order/active`;
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {
+        console.log(response, "response")
         if (response && response.data) {
           const mappedData = response.data.map((item: any) => {
             return {
@@ -36,16 +37,20 @@ export class AdminOrderDetailsComponent {
                 quantity: detail.quantity,
                 status: detail.status,
                 properties: detail.properties,
+                type: detail.properties.type,
+                size: detail.properties.size,
+                toppings: detail.properties.toppings,
                 additionalRequest: detail.additional_request
               })),
               subTotal: parseFloat(item.sub_total),
+              discountCode: item.discount_code,
               totalAmount: parseFloat(item.total_amount),
               dateTime: new Date(item.date_time),
               status: item.status
             };
           });
-    
-          this.cartItems = mappedData;
+         this.cartItems=mappedData
+        console.log(this.cartItems);
         }
       },
       (error) => {
@@ -88,6 +93,8 @@ export class AdminOrderDetailsComponent {
       },
       (error) => {
         console.error("Error can't generate report", error)
+        alert("There are something wrong. Can't generate report")
       });
   }
+
 }

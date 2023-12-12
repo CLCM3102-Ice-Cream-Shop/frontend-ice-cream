@@ -31,7 +31,6 @@ export class RegisterComponent {
       password: this.password,
       confirm_password: this.confirmPassword
     };
-    this.dataService.setCustomerRegisteredDetails(userData);
     // this.dataService.closeTheModal(true);
 
     const apiUrl = `${environment.apiCustomerUrl}/customer`; 
@@ -42,11 +41,12 @@ export class RegisterComponent {
         (response) => {
           console.log('Registration successful:', response);
           alert('Register successful!');
+         this.dataService.setCustomerRegisteredDetails(userData);
           localStorage.setItem('email', response.email);
           localStorage.setItem('name', response.name);
           this.reset();
           this.switchToLogin.emit(true);
-          this.router.navigate(['/home']);
+          // this.router.navigate(['/user']);
         },
         (error) => {
           console.error('Error during registration:', error);

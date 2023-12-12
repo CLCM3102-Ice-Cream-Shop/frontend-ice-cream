@@ -155,15 +155,10 @@ export class FlavoursComponent {
   }
 
   public addToCart() {
-    const iceCreamDetail = {
-      flavour: this.selectedFlavor.fName,
+    const properties = {
       type: this.selectedType,
       size: this.selectedSize,
       toppings: this.selectedToppings,
-      customerComments: this.additionalRequest,
-      count: this.counterValue,
-      price: this.priceVal,
-      displayPic: this.selectedFlavor.displayPic
     };
 
     const storedCustomerID = this.commonservice.getStoredCustomerID();
@@ -171,7 +166,7 @@ export class FlavoursComponent {
       customer_id: storedCustomerID,
       menu_id: this.selectedId,
       quantity: this.counterValue,
-      // properties: this.phoneNumber,
+      properties: JSON.stringify(properties),
       additional_request: this.additionalRequest
     };
     const apiUrl = `${environment.apiPaymentUrl}/cart`;

@@ -57,58 +57,82 @@ export class CommonserviceService {
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
   public registeredCustomerDetails: any = [];
-  setCustomerRegisteredDetails(obj: any) {
-    this.registeredCustomerDetails.push(obj);
-    this.saveCustomerDetailsToLocalStorage();
-    console.log(this.registeredCustomerDetails);
+  public customer ={
+    customerID:   null,
+    customerName:  null,
+  };
+ 
+  setCustomerIDAndName(customerID:any , customerName:any) {
+   this.customer.customerID=customerID;
+   this.customer.customerName = customerName;
+    this.saveCustomerIDToLocalStorage(this.customer);
+    console.log(this.customer);
   }
-  public saveCustomerDetailsToLocalStorage() {
-    const jsonString = JSON.stringify(this.registeredCustomerDetails);
-    localStorage.setItem('customerDetails', jsonString);
-  }
-  public sentCustomerRegisteredDetails() {
-    console.log(this.registeredCustomerDetails);
-    return this.registeredCustomerDetails;
-  }
-  public getStoredCustomerDetails(): any[] {
-    const storedData = localStorage.getItem('customerDetails');
-    return storedData ? JSON.parse(storedData) : [];
-  }
-
-  public customerID: string | null = null;
-
-  setCustomerID(customerID: string) {
-    this.customerID = customerID;
-    this.saveCustomerIDToLocalStorage();
-    console.log(this.customerID);
-  }
-
-  public saveCustomerIDToLocalStorage() {
-    if (this.customerID !== null) {
-      localStorage.setItem('customerID', this.customerID);
+  public customerIdArray:any =[];
+  public saveCustomerIDToLocalStorage(customer: object) {
+    if (this.customer.customerID !== null) {
+      this.customerIdArray.push(this.customer)
+      localStorage.setItem('customer', JSON.stringify(this.customerIdArray));
     }
   }
-
-  public getStoredCustomerID(): string | null {
-    const storedData = localStorage.getItem('customerID');
-    return storedData !== null ? storedData : null;
+  public getStoredCustomerID():any {
+    // const storedData = localStorage.getItem('customer');
+    // if(storedData !== null) {
+    // const storedDataArray: any[] = JSON.parse(storedData);
+    // storedDataArray.forEach(item => {
+    //   item.customerID == this.customer.customerID
+  
+    // })}
+    return this.customer.customerID
+    
   }
 
-  public userName: string | null = null;
+  // public userName: string | null = null;
 
-  setUserName(userName: string) {
-    this.userName = userName;
-    this.saveUserNameToLocalStorage();
-  }
+  // setUserName(userName: string) {
+  //   this.userName = userName;
+  //   this.saveUserNameToLocalStorage();
+  // }
 
-  public saveUserNameToLocalStorage() {
-    if (this.userName !== null) {
-      localStorage.setItem('userName', this.userName);
-    }
-  }
+  // public saveUserNameToLocalStorage() {
+  //   if (this.userName !== null) {
+  //     localStorage.setItem('userName', this.userName);
+  //   }
+  // }
 
   public getStoredUserName(): string | null {
-    const storedData = localStorage.getItem('userName');
-    return storedData !== null ? storedData : null;
+    // const storedData = localStorage.getItem('userName');
+    // return storedData !== null ? storedData : null;
+    console.log(this.customer.customerName)
+    return this.customer.customerName
   }
+  setCustomerRegisteredDetails(obj:any){
+    // this.registeredCustomerDetails.push(obj);
+    // localStorage.removeItem('customerDetails');
+    this.saveCustomerDetailsToLocalStorage(obj);
+    }
+    public saveCustomerDetailsToLocalStorage(details:any) {
+      const existingDetail = this.getStoredCustomerDetails();
+      let tempArray :any[] =[];
+      tempArray.push(details);
+      existingDetail.forEach(obj => {
+        tempArray.push(obj);
+      });
+      this.registeredCustomerDetails = tempArray;
+      const jsonString = JSON.stringify(tempArray);
+      console.log("test", tempArray , jsonString)
+      localStorage.setItem('customerDetails', jsonString);
+    }
+    public sentCustomerRegisteredDetails(){
+      console.log(this.registeredCustomerDetails);
+      return this.registeredCustomerDetails;
+    }
+    public getStoredCustomerDetails():any[]  {
+      const storedData = localStorage.getItem('customerDetails');
+      console.log(storedData)
+      return storedData ? JSON.parse(storedData) : [];
+    }
+    public loginUser(){
+      
+    }
 }

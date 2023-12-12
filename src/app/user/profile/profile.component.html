@@ -6,30 +6,30 @@
   <div class="col-6">
     <div class="mb-3">
       <label for="firstname" class="form-label">First Name</label>
-      <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="customerData.first_name" required [ngClass]="isEditing?'editable': 'nonEditable'">
+      <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="customerData.first_name" required [ngClass]="isEditing?'editable': 'nonEditable'" (change)="isValueChanged=true">
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="customerData.email" required [ngClass]="isEditing?'editable': 'nonEditable'">
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="customerData.email" required [ngClass]="isEditing?'editable': 'nonEditable'" (change)="isValueChanged=true">
     </div>
     <div class="mb-3">
       <label for="newpassword" class="form-label">New Password</label>
-      <input type="password" class="form-control" id="newpassword" name="newpassword" [(ngModel)]="customerData.password" required [ngClass]="isEditing?'editable': 'nonEditable'">
+      <input type="password" class="form-control" id="newpassword" name="newpassword" [(ngModel)]="customerData.password" required [ngClass]="isEditing?'editable': 'nonEditable'" (change)="isValueChanged=true">
     </div>
   </div>
   <div class="col-6">
     <div class="mb-3">
       <label for="lastname" class="form-label">Last Name</label>
-      <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="customerData.last_name" required [ngClass]="isEditing?'editable': 'nonEditable'">
+      <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="customerData.last_name" required [ngClass]="isEditing?'editable': 'nonEditable'" (change)="isValueChanged=true">
     </div>
     <div class="mb-3">
       <label for="phonenumber" class="form-label">Phone Number</label>
-      <input type="number" class="form-control" id="phonenumber" name="phonenumber" [(ngModel)]="customerData.phone" required [ngClass]="isEditing?'editable': 'nonEditable'">
+      <input type="number" class="form-control" id="phonenumber" name="phonenumber" [(ngModel)]="customerData.phone" required [ngClass]="isEditing?'editable': 'nonEditable'" (change)="isValueChanged=true">
     </div>
     <div class="mb-3">
       <label for="confirmpassword" class="form-label">Confirm Password</label>
       <input type="password" class="form-control" id="confirmpassword" name="confirmpassword"
-        [(ngModel)]="customerData.confirm_password" required [ngClass]="isEditing?'editable': 'nonEditable'">
+        [(ngModel)]="customerData.confirm_password" required [ngClass]="isEditing?'editable': 'nonEditable'" (change)="isValueChanged=true">
     </div>
   </div>
   <div class="col-12 mb-3">
