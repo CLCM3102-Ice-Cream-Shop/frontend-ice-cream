@@ -3,7 +3,7 @@
   <div class="row mx-0">
     <div class="col-6 mb-3" *ngFor="let item of specialArray">
       <div class="card-container">
-        <div class="card text-center" data-bs-toggle="modal" data-bs-target="#icecreamDetailModal">
+        <div class="card text-center">
           <img src="assets/images/{{item.displayPic}}" alt="iceCream image" height="450px" width="700px" class="p-2">
           
           <div class="overlay">
@@ -20,7 +20,7 @@
                   <em class="fa fa-plus"></em>
                 </button>
               </div>
-              <button type="button" class="btn btn-primary btn-sm m-0 ms-3" (click)="addToCart(item.id)">Add to Cart</button>
+              <button type="button" class="btn btn-primary btn-sm m-0 ms-3" data-bs-toggle="modal" data-bs-target="#icecreamDetailModal" (click)="addToCart(item.id)">Add to Cart</button>
             </div>
           </div>
         <span class="iceName">{{item.fName}}</span>
@@ -34,8 +34,9 @@
 aria-labelledby="icecreamDetailModalLabel" aria-hidden="true">
 <div class="modal-dialog">
   <div class="modal-content">
-    <div class="modal-body">
-
+    <div class="modal-body d-flex align-items-center justify-content-between">
+      Your item is added to the cart successfully!!!
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
   </div>
 </div>

@@ -20,6 +20,7 @@ export class AdminOrderDetailsComponent {
     const apiUrl = `${environment.apiPaymentUrl}/order/active`;
     this.httpClient.get<any>(apiUrl).subscribe(
       (response) => {
+        console.log(response, "response")
         if (response && response.data) {
           const mappedData = response.data.map((item: any) => {
             return {
@@ -44,8 +45,8 @@ export class AdminOrderDetailsComponent {
               status: item.status
             };
           });
-    
-          this.cartItems = mappedData;
+         this.cartItems=mappedData
+          
         }
       },
       (error) => {

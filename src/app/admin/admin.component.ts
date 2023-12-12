@@ -9,15 +9,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-  username = '';
-  password = '';
-  loginMessage = '';
-
+  public username = '';
+  public password = '';
+  public userIdInvalid = false;
+  public pswrdInvalid = false;
+  public userInvalid = false;
+  public userValid = false;
+  public loginMessage: string = '';
   users = [
     { username: 'akila', password: 'password1' },
     { username: 'rani', password: 'password2' },
   ];
 constructor(private httpClient: HttpClient, private router: Router){}
+// onSubmit() {
+//   const user = this.users.find(
+//     (u) => u.username === this.username && u.password === this.password
+//   );
+//   if (user) {
+//     this.loginMessage = 'Login Successful!';
+//     this.router.navigate(['/adminOrderDetails']);
+
+//   } else {
+//     this.loginMessage = 'Login Failed. Please check your username and password.';
+//   }
+
   onSubmit() {
     const userData = {
       email: this.username,
@@ -30,10 +45,14 @@ constructor(private httpClient: HttpClient, private router: Router){}
             next: (response) => {
                 console.log("Login successful", response)
                 alert("Login Successful!")
+                this.userInvalid = true;
+                this.pswrdInvalid = true;
                 this.router.navigate(['/adminOrderDetails']);
             },
             error: (error) => {
                 console.error('Login error', error);
+                this.userInvalid = false;
+                this.pswrdInvalid = false;
                 this.loginMessage = 'Login Failed. Please check your username and password.';
             }
         });
