@@ -16,7 +16,8 @@
     left: 140px;
 }
 .row{
-    min-height: 600px;
+    min-height: 700px;
+    height: 900px;
 }
 .fa-solid{
   font-weight: 900;
